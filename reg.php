@@ -1,0 +1,1 @@
+<?php echo base64_encode(date('l jS F Y h-i-s A')); ?>
