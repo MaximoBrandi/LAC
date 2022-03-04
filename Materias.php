@@ -146,15 +146,15 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-7">
                     <div class="u-container-layout u-valign-top u-container-layout-7">
-                      <h3 class="u-text u-text-default u-text-7">Ingles</h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-7">Ir<br>
+                      <h3 class="u-text u-text-default u-text-7">Redes</h3>
+                      <a href="Materia.php?mt=redes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-7">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-8">
                     <div class="u-container-layout u-valign-top u-container-layout-8">
-                      <h3 class="u-text u-text-default u-text-8">Mátematicas</h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-8">Ir<br>
+                      <h3 class="u-text u-text-default u-text-8">Base de datos</h3>
+                      <a href="Materia.php?mt=base%20de%20datos" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-8">Ir<br>
                       </a>
                     </div>
                   </div>
@@ -164,14 +164,14 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-9">
                     <div class="u-container-layout u-valign-top u-container-layout-9">
-                      <h3 class="u-text u-text-default u-text-9">Mátematicas</h3>
+                      <h3 class="u-text u-text-default u-text-9"></h3>
                       <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-9">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-10">
                     <div class="u-container-layout u-valign-bottom u-container-layout-10">
-                      <h3 class="u-text u-text-default u-text-10">Ingles</h3>
+                      <h3 class="u-text u-text-default u-text-10"></h3>
                       <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-10">Ir<br>
                       </a>
                     </div>
@@ -182,14 +182,14 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-11">
                     <div class="u-container-layout u-valign-top u-container-layout-11">
-                      <h3 class="u-text u-text-default u-text-11">Ingles</h3>
+                      <h3 class="u-text u-text-default u-text-11"></h3>
                       <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-11">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-12">
                     <div class="u-container-layout u-valign-top u-container-layout-12">
-                      <h3 class="u-text u-text-default u-text-12">Mátematicas</h3>
+                      <h3 class="u-text u-text-default u-text-12"></h3>
                       <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-12">Ir<br>
                       </a>
                     </div>
