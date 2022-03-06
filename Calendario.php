@@ -1,5 +1,5 @@
 <?php 
-   // error_reporting(0);
+    error_reporting(0);
     include "functions/checkSession.php";
     checkSession(0);
     
@@ -15,7 +15,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Calendario</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Calendario.css" media="screen">
+<link rel="stylesheet" href="calendario.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">

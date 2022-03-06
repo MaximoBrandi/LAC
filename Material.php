@@ -6,6 +6,9 @@ include "functions/conexion.php";
 checkSession(0);
 session_start();
 
+$sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
+$resultx = consulta($mysqli, $sql);
+
 $result = consulta($mysqli, "SELECT * FROM Archivos WHERE id = ".$_GET["id"]);
 $row = mysqli_fetch_assoc($result);
 
@@ -105,7 +108,7 @@ if (isset($_POST["comentario"])) {
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Material</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Material.css" media="screen">
+<link rel="stylesheet" href="material.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -184,7 +187,7 @@ if (isset($_POST["comentario"])) {
               <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><?php echo base64_decode($row["cuatro"]) ?><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
               <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content--><?php echo base64_decode($row["dies"]) ?><!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date--><!--blog_post_metadata_category-->
               <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='buscar.php?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
-              <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comentarios (0)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->
+              <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comentarios (<?php echo mysqli_num_rows($resultx) ?>)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->
               <?php if ($row["cuatro"] == $row2["uno"]) {echo "<span data-href='editar.php?id=".$_GET["id"]."' class='u-meta-edit u-meta-icon'><!--blog_post_metadata_edit_content-->Edit<!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->";} ?>
             </div><!--/blog_post_metadata--><!--blog_post_content-->
             <div class="u-align-justify u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content--><?php echo base64_decode($row["ocho"]) ?><!--/blog_post_content_content--></div><!--/blog_post_content-->
@@ -237,8 +240,8 @@ if (isset($_POST["comentario"])) {
           <div class="u-container-layout u-valign-bottom u-container-layout-1">
             <?php 
             $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
-            $result = consulta($mysqli, $sql);
-            if ($result->num_rows > 0) {
+            $resultx = consulta($mysqli, $sql);
+            if ($resultx->num_rows > 0) {
               while($rowz = $result->fetch_assoc()) {
                 $yat = consulta($mysqli, "SELECT id FROM Usuarios WHERE uno = '".$rowz["uno"]."'"); $yat = mysqli_fetch_assoc($yat); $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$yat["id"]); $wor = mysqli_fetch_assoc($wor);
                 echo "<div class='u-container-style u-group u-group-2'>

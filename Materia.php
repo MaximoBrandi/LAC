@@ -16,7 +16,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Materia</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Materia.css" media="screen">
+<link rel="stylesheet" href="materia.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -86,7 +86,7 @@
         <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-always u-gallery-1" id="carousel-8775">
           <div class="u-gallery-inner u-gallery-inner-1" role="listbox">
             <?php  
-            $sql = "SELECT * FROM Archivos WHERE dos='".base64_encode($_GET["mt"])."'";
+            $sql = "SELECT * FROM Archivos WHERE dos='".base64_encode($_GET["mt"])."' AND once IS NULL";
             $result = consulta($mysqli, $sql);
             if ($result->num_rows > 0) {
               // output data of each row
