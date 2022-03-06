@@ -14,11 +14,55 @@
     $row2 = mysqli_fetch_assoc($result);
 
     $likes = explode( '/', base64_decode($row2["siete"]));
+    $cont = 0;
+
+    //Delete account system
+
+    if (isset($_GET["delete"])) {
+      $sql = "UPDATE Usuarios SET siete ='DAE' WHERE id =".$_SESSION["Login"];
+      consulta($mysqli, $sql);
+      unset($_SESSION["Login"]);
+      header('Location: index.php');
+    }
+
+    //Close session system
+
+    if (isset($_GET["clss"])) {
+      unset($_SESSION["Login"]);
+      header('Location: index.php');
+    }
+
+    //Password change system
+
+    $state = 0;
+    if(isset($_POST["actu"]) && isset($_POST["nue1"]) && isset($_POST["nue2"])){
+      $result = consulta($mysqli, "SELECT * FROM Usuarios WHERE id=" . $_SESSION["Login"]);
+      $row = mysqli_fetch_assoc($result);
+    
+      if ($_POST["nue1"] == $_POST["nue2"] && md5($_POST["actu"]) == base64_decode($row["dos"])) {
+        consulta($mysqli, "UPDATE Usuarios SET dos ='". base64_encode(md5($_POST["nue1"]))."' WHERE id =".$_SESSION["Login"]);
+        $state = 1;
+      }else{
+        $state = 2;
+      }
+    }
+
+    //User pic change system
+
+    if (isset($_POST["webIMG"])) {
+      $sql = "UPDATE Perfil SET dos = '".base64_encode($_POST["webIMG"])."' WHERE id =".$_SESSION["Login"];
+      $result = consulta($mysqli, $sql);
+    }
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -66,7 +110,7 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -74,14 +118,24 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header>
+      </div>
+      <?php 
+      
+      if ($state == 1) {
+        echo "<script>alertSuccessfulChange()</script>";
+      }else if ($state == 2){
+        echo "<script>alertErrorChange()</script>";
+      }
+      
+      ?>
+    </header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-c925">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Perfil</h1>
@@ -107,7 +161,7 @@
                         $count = 1;
                         while($rowt = $result->fetch_assoc()) {
                           echo "
-                          <div class='u-effect-fade u-gallery-item u-gallery-item-".$count."' data-href='Material.php?id=".$rowt["id"]."' data-image-width='256' data-image-height='256'>
+                          <div class='u-effect-fade u-gallery-item u-gallery-item-".$count."' data-href='material.php?id=".$rowt["id"]."' data-image-width='256' data-image-height='256'>
                           <div class='u-back-slide'>
                             <img class='u-back-image u-expanded' src='".base64_decode($rowt["seis"])."'>
                           </div>
@@ -130,24 +184,39 @@
                   </div>
                   <h4 class="u-align-center u-text u-text-default u-text-2">
                     <?php if ($row2["tres"] != NULL) {
-                      echo "<a class='u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1' href='Buscar.php?fav=".base64_encode($_SESSION["Login"])."'>Ver mas</a>";
+                      echo "<a class='u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1' href='buscar.php?fav=".base64_encode($_SESSION["Login"])."'>Ver mas</a>";
                     } ?>
                   </h4>
                 </div>
               </div>
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2">
+              <div class="u-container-layout u-container-layout-2">
                   <h1 class="u-align-center u-text u-title u-text-3">Comentarios<br>
                   </h1>
                   <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
-                    <div class="u-container-layout u-container-layout-3">
-                      <h3 class="u-text u-text-default u-text-4">TITULO-COMENTARIO</h3>
-                      <p class="u-text u-text-5">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices. COMENTARIO-COMENTARIO</p>
-                      <h5 class="u-text u-text-default u-text-6">COMENTARIO-LUGAR</h5>
-                    </div>
+                  <?php 
+                      $sql = "SELECT * FROM Comentarios WHERE uno ='".$row["uno"]."' AND cinco IS NULL";
+                      $result = consulta($mysqli, $sql);
+                      if ($result->num_rows > 0) {
+                        while($rowz = $result->fetch_assoc()) {
+                          $result = consulta($mysqli, "SELECT siete FROM Archivos WHERE id =".base64_decode($rowz["tres"]));
+                          $trieszs = mysqli_fetch_assoc($result);
+                          echo "<div class='u-container-layout u-container-layout-3'>
+                          <p class='u-text u-text-5'>".base64_decode($rowz["dos"])."</p>
+                          <h5 class='u-text u-text-default u-text-6'>".base64_decode($trieszs["siete"])."</h5>
+                        </div>";
+                        if ($cont > 0) {
+                          break;
+                        }
+                        $cont = $cont + 1;
+                        }
+                      } else {
+                        echo "0 results";
+                      }
+                  ?>
                   </div>
                   <h4 class="u-align-center u-text u-text-default u-text-7">
-                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="https://nicepage.com">Ver mas</a>
+                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="comentarios.php">Ver mas</a>
                   </h4>
                 </div>
               </div>
@@ -159,9 +228,9 @@
             <div class="u-layout-col">
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
                 <div class="u-container-layout u-container-layout-4">
-                  <img class="u-expanded-width u-image u-image-default u-preserve-proportions u-image-1" src="<?php echo base64_decode($row2['dos']); ?>" alt="" data-image-width="256" data-image-height="256"><span class="u-icon u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9b46"></use></svg><svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-9b46" style="enable-background:new 0 0 52 52;"><path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28H28v11c0,1.104-0.896,2-2,2
-       	s-2-0.896-2-2V28H13.5c-1.104,0-2-0.896-2-2s0.896-2,2-2H24V14c0-1.104,0.896-2,2-2s2,0.896,2,2v10h10.5c1.104,0,2,0.896,2,2
-	      S39.604,28,38.5,28z"></path></svg></span>
+                  <img class="u-expanded-width u-image u-image-default u-preserve-proportions u-image-1" src="<?php echo base64_decode($row2['dos']); ?>" alt="" data-image-width="256" data-image-height="256"><span class="u-icon u-icon-1"><svg onclick="changeUserPic()" class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9b46"></use></svg><svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-9b46" style="enable-background:new 0 0 52 52;"><path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28H28v11c0,1.104-0.896,2-2,2
+             	s-2-0.896-2-2V28H13.5c-1.104,0-2-0.896-2-2s0.896-2,2-2H24V14c0-1.104,0.896-2,2-2s2,0.896,2,2v10h10.5c1.104,0,2,0.896,2,2
+	            S39.604,28,38.5,28z"></path></svg></span>
                 </div>
               </div>
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
@@ -179,24 +248,24 @@
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6">
-                <a href="https://nicepage.com/website-builder" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-3" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Cambiar<br>&nbsp;contraseña
-                </a>
+                <button onclick="alertChangePassword()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-3" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Cambiar<br>&nbsp;contraseña
+                </button>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-7">
-                <a href="https://nicepage.com/website-builder" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-4" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Eliminar<br>&nbsp;Cuenta<br>
-                </a>
+                <button onclick="alertCloseSession()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-4" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Eliminar<br>&nbsp;Cuenta<br>
+                </button>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-8">
-                <a href="https://nicepage.com/website-builder" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-5" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Editar Perfil</a>
+                <button onclick="alertDeleteAccount()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-5" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Cerrar sesion</button>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
-                <a href="Subir.php" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-6" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Agregar<br>archivos
+                <a href="subir.php" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-6" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Agregar<br>archivos
                 </a>
               </div>
             </div>

@@ -1,10 +1,12 @@
 <?php 
-   // error_reporting(0);
+    error_reporting(0);
     include "functions/checkSession.php";
     include "functions/functions.php";
 
     checkSession(0);
 
+    $edit = "0";
+    $id = $_GET["id"];
     if (isset($_POST["materia"])) {
       session_start();
       $edit = edit($_POST, $_SESSION["Login"], $_GET);
@@ -41,6 +43,11 @@
 				"mailto:delegacion510.2022@gmail.com"
 		]
 }</script>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Editar">
     <meta property="og:description" content="">
@@ -52,6 +59,15 @@
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
         </h1>
+        <?php 
+          
+          if ($edit == "true") {
+            echo "<script>alertSuccessfulEdit(".$id.")</script>";
+          } else if ($edit == "false"){
+            echo "<script>alertErrorEdit()</script>";
+          }
+          
+          ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -62,7 +78,7 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -70,7 +86,7 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -89,7 +105,7 @@
           <div class="u-container-layout u-valign-middle u-container-layout-1">
             <h1 class="u-text u-text-default u-text-1">Editar material</h1>
             <div class="u-form u-form-1">
-              <form action="Editar.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+              <form action="editar.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
                   <label for="name-6cbd" class="u-label">Materia</label>
                   <input type="text" id="name-6cbd" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">

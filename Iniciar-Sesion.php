@@ -1,4 +1,7 @@
 <?php 
+error_reporting(0);
+include "functions/checkSession.php";
+checkSession(1);
 include "functions/functions.php";
 
 if (isset($_POST["name"])) {
@@ -10,6 +13,11 @@ if (isset($_POST["name"])) {
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Registrase / Iniciar sesion">
@@ -57,7 +65,7 @@ if (isset($_POST["name"])) {
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -65,7 +73,7 @@ if (isset($_POST["name"])) {
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
 </li></ul>
               </div>
             </div>
@@ -75,6 +83,17 @@ if (isset($_POST["name"])) {
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-5ba3">
       <div class="u-clearfix u-sheet u-sheet-1">
+        <?php 
+        
+        if (isset($_GET["al"])) {
+          if ($_GET["al"] == 1) {
+            echo "<script>alertErrorAccount()</script>";
+          } else if($_GET["al"] == 2){
+            echo "<script>alertInexistingAccount()</script>";
+          }
+        }
+
+        ?>
         <h1 class="u-text u-text-default u-text-1">Registrase / Iniciar sesion</h1>
         <p class="u-text u-text-2">Aqui puedes iniciar sesion o registrarte&nbsp;</p>
       </div>
@@ -82,10 +101,10 @@ if (isset($_POST["name"])) {
     <section class="u-clearfix u-section-2" id="sec-0c1f">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-1">Iniciar Sesion</h2>
-        <a href="Registrase.php" data-page-id="736912226" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Registrate<br>
+        <a href="registrase.php" data-page-id="736912226" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Registrate<br>
         </a>
         <div class="u-form u-form-1">
-          <form action="Iniciar-Sesion.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+          <form action="iniciar-Sesion.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
             <div class="u-form-group u-form-name">
               <label for="name-1081" class="u-label">Nombre y Apellido</label>
               <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">

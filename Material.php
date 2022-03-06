@@ -1,19 +1,10 @@
 <?php 
-//error_reporting(0);
+error_reporting(0);
 include "functions/checkSession.php";
-
-
 include "functions/functions.php";
-
-
 include "functions/conexion.php";
 checkSession(0);
-
 session_start();
-
-if (isset($_GET["fv"])) {
-  $favorite = favorite($_SESSION["Login"], $_GET["id"]);
-}
 
 $result = consulta($mysqli, "SELECT * FROM Archivos WHERE id = ".$_GET["id"]);
 $row = mysqli_fetch_assoc($result);
@@ -32,8 +23,11 @@ $pos = strpos(base64_decode($row3["tres"]), $dresz);
 
 // Like sistem
 
-$result = consulta($mysqli, "SELECT id FROM Usuarios WHERE uno ='".$row["cuatro"]."'");
+$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE uno ='".$row["cuatro"]."'");
 $row5 = mysqli_fetch_assoc($result);
+
+$result = consulta($mysqli, "SELECT siete FROM Perfil WHERE uno ='".$row5["tres"]."'");
+$row6 = mysqli_fetch_assoc($result);
 
 
 $dresztx = "'".$_GET["id"]."'";
@@ -43,29 +37,17 @@ $pos2 = strpos(base64_decode($row2["ocho"]), $dresz);
 
 if (isset($_GET["li"]) & $pos2 === false) {
     if($_GET["li"] == 1){
-        if ($row3["siete"] == NULL) {
-          $blyax = "1/0";
-          $blyax = base64_encode($blyax);
-          $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
-        }else{
-          $blyat = explode( '/', base64_decode($row3["siete"]));
+          $blyat = explode( '/', base64_decode($row6["siete"]));
           $blyat[0] = $blyat[0] + 1;
           $blyax = implode("/", $blyat);
           $blyax = base64_encode($blyax);
           $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
-        }
     }else if($_GET["li"] == 2){
-      if ($row3["siete"] == NULL) {
-        $blyax = "0/1";
-        $blyax = base64_encode($blyax);
-        $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
-      }else{
-        $blyat = explode( '/', base64_decode($row3["siete"]));
+        $blyat = explode( '/', base64_decode($row6["siete"]));
         $blyat[1] = $blyat[1] + 1;
         $blyax = implode("/", $blyat);
         $blyax = base64_encode($blyax);
         $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
-      }
     }
     if ($row2["ocho"] == NULL) {
       $dou = consulta($mysqli, "UPDATE Usuarios SET ocho = '$dresztx' WHERE id =".$_SESSION["Login"]);
@@ -75,13 +57,42 @@ if (isset($_GET["li"]) & $pos2 === false) {
     }
 }
 
-// ------
+// Favorite System
+
+if(isset($_GET["fv"])){
+  $sql = "SELECT * FROM Perfil WHERE id =". $_SESSION["Login"];
+  $result = consulta($mysqli, $sql);
+  $row2 = mysqli_fetch_assoc($result);
+
+  $var = "'".$_GET["id"]."'";
+  $var2 = base64_decode($row2["tres"]).", '".$_GET["id"]."'";
+  if ($row2["tres"] == NULL) {
+      $sql = "UPDATE Perfil SET tres = '".base64_encode($var)."' WHERE id =". $_SESSION["Login"];
+      $result = consulta($mysqli, $sql);
+  }else{
+      $sql = "UPDATE Perfil SET tres = '".base64_encode($var2)."' WHERE id =". $_SESSION["Login"];
+      $result = consulta($mysqli, $sql);
+  }
+}
 
 // Comments system
+if (isset($_POST["comentario"])) {
+  $sql = "INSERT INTO Comentarios VALUES (NULL, '".$row2["uno"]."', '".base64_encode($_POST["comentario"])."', '".base64_encode($_GET["id"])."', '".base64_encode(date('l jS F Y h-i-s A'))."', NULL)";
+  $dou = consulta($mysqli, $sql);
+  $sql = "SELECT id FROM Comentarios WHERE uno = '".$row2["uno"]."'";
+  $dou = consulta($mysqli, $sql);
+  $rowu = mysqli_fetch_assoc($dou);
 
-//if ($isset($_POST["comentario"])) {
-//  $dou = consulta($mysqli, );
-//}
+  $var = "'".$rowu["id"]."'";
+  $var2 = base64_decode($row2["cuatro"]).", '".$_GET["id"]."'";
+  if ($row2["cuatro"] == NULL) {
+      $sql = "UPDATE Perfil SET cuatro = '".base64_encode($var)."' WHERE uno ='".$row2["uno"]."'";
+      $result = consulta($mysqli, $sql);
+  }else{
+      $sql = "UPDATE Perfil SET tres = '".base64_encode($var2)."' WHERE uno ='".$row2["uno"]."'";
+      $result = consulta($mysqli, $sql);
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -136,7 +147,7 @@ if (isset($_GET["li"]) & $pos2 === false) {
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -144,7 +155,7 @@ if (isset($_GET["li"]) & $pos2 === false) {
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -172,9 +183,9 @@ if (isset($_GET["li"]) & $pos2 === false) {
             <div class="u-blog-control u-metadata u-text-grey-50 u-metadata-1"><!--blog_post_metadata_author-->
               <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><?php echo base64_decode($row["cuatro"]) ?><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
               <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content--><?php echo base64_decode($row["dies"]) ?><!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date--><!--blog_post_metadata_category-->
-              <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='Buscar.php?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
+              <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='buscar.php?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
               <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comentarios (0)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->
-              <?php if ($row["cuatro"] == $row2["uno"]) {echo "<span data-href='Editar.php?id=".$_GET["id"]."' class='u-meta-edit u-meta-icon'><!--blog_post_metadata_edit_content-->Edit<!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->";} ?>
+              <?php if ($row["cuatro"] == $row2["uno"]) {echo "<span data-href='editar.php?id=".$_GET["id"]."' class='u-meta-edit u-meta-icon'><!--blog_post_metadata_edit_content-->Edit<!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->";} ?>
             </div><!--/blog_post_metadata--><!--blog_post_content-->
             <div class="u-align-justify u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content--><?php echo base64_decode($row["ocho"]) ?><!--/blog_post_content_content--></div><!--/blog_post_content-->
           </div>
@@ -182,11 +193,11 @@ if (isset($_GET["li"]) & $pos2 === false) {
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item u-list-item-1">
-              <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-xl u-container-layout-2"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" data-href="Material.php?id=<?php echo $_GET["id"] ?>&li=1"><img src="images/13.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-xl u-container-layout-2"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" data-href="material.php?id=<?php echo $_GET["id"] ?>&li=1"><img src="images/13.png" alt=""></span>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-2">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-2" data-href="Material.php?id=<?php echo $_GET["id"] ?>&li=2"><img src="images/14.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-2" data-href="material.php?id=<?php echo $_GET["id"] ?>&li=2"><img src="images/14.png" alt=""></span>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-3">
@@ -199,14 +210,14 @@ if (isset($_GET["li"]) & $pos2 === false) {
               <div class="share-options">
                         <p class="title">Compartir</p>
                         <div class="link-container">
-                            <p class="link">https://example.com/share</p>
-                            <button class="copy-btn">Copiar</button>
+                            <textarea class="link js-copytextarea">https://lac-lyp.000webhostapp.com/Material.php?id=<?php echo $_GET["id"]?></textarea>
+                            <button class="copy-btn">Copiado!</button>
                         </div>
               </div>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-4">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-hover-feature u-icon u-text-palette-1-base u-icon-4" <?php if($pos === false){ echo 'data-href="Material.php?id='.$_GET["id"].'&fv=1'; }?>><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-dd8e"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-dd8e" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-hover-feature u-icon u-text-palette-1-base u-icon-4" <?php if($pos === false){ echo 'data-href="material.php?id='.$_GET["id"].'&fv=1'; }?>><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-dd8e"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-dd8e" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
 	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
 	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
 	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
@@ -225,21 +236,18 @@ if (isset($_GET["li"]) & $pos2 === false) {
         <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
           <div class="u-container-layout u-valign-bottom u-container-layout-1">
             <?php 
-            $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."'";
+            $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
             $result = consulta($mysqli, $sql);
-
             if ($result->num_rows > 0) {
-              // output data of each row
-              $count = 1;
               while($rowz = $result->fetch_assoc()) {
+                $yat = consulta($mysqli, "SELECT id FROM Usuarios WHERE uno = '".$rowz["uno"]."'"); $yat = mysqli_fetch_assoc($yat); $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$yat["id"]); $wor = mysqli_fetch_assoc($wor);
                 echo "<div class='u-container-style u-group u-group-2'>
                 <div class='u-container-layout'>
-                  <p class='u-text u-text-2'> ".base64_decode($row["dos"])."</p>
-                  <div class='u-image u-image-circle u-preserve-proportions u-image-1' alt='' src='images/LogoTransMed.png' data-image-width='256' data-image-height='256'></div>
-                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($row["cuatro"])."</h6>
+                  <p class='u-text u-text-2'> ".base64_decode($rowz["dos"])."</p>
+                  <img class='u-image u-image-circle u-preserve-proportions u-image-1' alt='' src='".base64_decode($wor["dos"])."' data-image-width='256' data-image-height='256'>
+                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($rowz["cuatro"])."</h6>
                 </div>
               </div>";
-                $count = $count + 1;
               }
             } else {
               echo "0 results";
@@ -247,7 +255,7 @@ if (isset($_GET["li"]) & $pos2 === false) {
 
             ?>
             <div class="u-form u-form-1">
-              <form action="Material.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-15" style="padding: 15px">
+              <form action="material.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-15" style="padding: 15px">
                 <div class="u-form-group u-form-textarea u-label-top u-form-group-1">
                   <label for="textarea-f987" class="u-label">Comentario</label>
                   <textarea rows="1" cols="50" id="textarea-f987" name="comentario" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="" maxlength="255"></textarea>

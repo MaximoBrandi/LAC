@@ -1,12 +1,14 @@
 <?php 
-   // error_reporting(0);
+    error_reporting(0);
     include "functions/checkSession.php";
     include "functions/functions.php";
     checkSession(0);
 
+    $return = "0";
+    $id = "0";
     if (isset($_POST["materia"])) {
       session_start();
-      $upload = upload($_POST, $_SESSION["Login"]);
+      $return = upload($_POST, $_SESSION["Login"]);
     }
 
 ?>
@@ -14,6 +16,11 @@
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -51,6 +58,15 @@
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
         </h1>
+        <?php 
+          
+          if ($return[0] == "true") {
+            echo "<script>alertSuccessfulUpload(".$return[1].")</script>";
+          } else if ($return[0] == "false"){
+            echo "<script>alertErrorUpload()</script>";
+          }
+          
+          ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -61,7 +77,7 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -69,7 +85,7 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -90,7 +106,7 @@
           <div class="u-container-layout u-valign-middle u-container-layout-1">
             <h1 class="u-text u-text-default u-text-1">Subir materiales</h1>
             <div class="u-form u-form-1">
-              <form action="Subir.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+              <form action="subir.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
                   <label for="name-6cbd" class="u-label">Materia</label>
                   <input type="text" id="name-6cbd" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">

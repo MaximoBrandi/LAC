@@ -4,13 +4,37 @@
     include_once "functions/conexion.php";
     checkSession(0);
 
+    $convert = array('#' => 'sharp');
+    $reconvert = array('sharp' => '#');
+
     if (isset($_GET["tag"])) {
       $sql = "SELECT * FROM Archivos WHERE nueve LIKE '%".base64_decode($_GET["tag"])."%'";
       $result = consulta($mysqli, $sql);
     }
 
-    $convert = array('#' => 'sharp');
-    $reconvert = array('sharp' => '#');
+    if (isset($_GET["fav"])) {
+      $result = consulta($mysqli, "SELECT tres FROM Perfil WHERE id =".$_SESSION["Login"]);
+      $row2x = mysqli_fetch_assoc($result);
+
+      $sql = "SELECT * FROM Archivos WHERE id IN (".base64_decode($row2x["tres"]).")";
+      $result = consulta($mysqli, $sql);
+    }
+
+    if (isset($_POST["name"])) {
+      if ($_POST["selector"] == "tag") {
+        $tag = str_replace( array_keys( $convert ),
+        array_values( $convert ),
+        $_POST["name"]);
+        $sql = "SELECT * FROM Archivos WHERE nueve LIKE '%".$tag."%'";
+        $result = consulta($mysqli, $sql);
+      } else if ($_POST["selector"] == "nombre") {
+        $sql = "SELECT * FROM Archivos WHERE siete LIKE '%".base64_encode($_POST["name"])."%'";
+        $result = consulta($mysqli, $sql);
+      } else if ($_POST["selector"] == "materia") {
+        $sql = "SELECT * FROM Archivos WHERE dos = '".base64_encode(strtolower(unaccent($_POST["name"])))."'";
+        $result = consulta($mysqli, $sql);
+      }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +88,7 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -72,7 +96,7 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -82,9 +106,11 @@
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Buscar por "<?php $rowest = str_replace( array_keys( $reconvert ),
-                        array_values( $reconvert ),
-                        base64_decode($_GET["tag"]));  echo $rowest ?>"</h1>
+        <h1 class="u-text u-text-default u-text-1">Buscar por "<?php if(isset($_POST["tag"]) || isset($_GET["tag"])){ echo base64_decode($_GET["tag"]); } else if (isset($_GET["fav"])){
+                          echo "Favoritos";
+                        }{
+                          echo $_POST["selector"];
+                        };  ?>"</h1>
         <p class="u-text u-text-2">Aqui encontras las busquedas con los filtros que has seleccionado</p>
       </div>
     </section>
@@ -96,7 +122,7 @@
             if ($result->num_rows > 0) {
               $count = 1;
               while($row = $result->fetch_assoc()) {
-                echo "<div class='u-effect-hover-liftUp u-gallery-item u-gallery-item-".$count."' data-href='Material.php?id=".$row["id"]."'>
+                echo "<div class='u-effect-hover-liftUp u-gallery-item u-gallery-item-".$count."' data-href='material.php?id=".$row["id"]."'>
                   <div class='u-back-slide'>
                     <img class='u-back-image u-expanded' src='".base64_decode($row["seis"])."' alt='".base64_decode($row["siete"])."'>
                 </div>

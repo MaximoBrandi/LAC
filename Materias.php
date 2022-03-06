@@ -1,5 +1,5 @@
 <?php 
-   // error_reporting(0);
+    error_reporting(0);
     include "functions/checkSession.php";
     checkSession(0);
     
@@ -55,7 +55,7 @@
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -63,7 +63,7 @@
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Perfil.php" style="padding: 10px 0px;">Perfil</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -75,6 +75,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Materias</h1>
         <p class="u-text u-text-2">Aqui encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.&nbsp;</p>
+        <a class="u-text u-text-1" href="buscador.php"> Ir al buscador </a>
       </div>
     </section>
     <section class="u-clearfix u-grey-10 u-section-2" id="sec-286a">
@@ -87,14 +88,14 @@
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-1">
                     <div class="u-container-layout u-valign-top u-container-layout-1">
                       <h3 class="u-text u-text-default u-text-1">Mátematicas</h3>
-                      <a href="Materia.php?mt=matematicas" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-1">Ir<br>
+                      <a href="materia.php?mt=matematicas" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-1">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-2">
                     <div class="u-container-layout u-valign-top u-container-layout-2">
                       <h3 class="u-text u-text-default u-text-2">Proyecto II</h3>
-                      <a href="Materia.php?mt=proyecto%20ii" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-2">Ir<br>
+                      <a href="materia.php?mt=proyecto%20ii" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-2">Ir<br>
                       </a>
                     </div>
                   </div>
@@ -105,14 +106,14 @@
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-3">
                     <div class="u-container-layout u-valign-top u-container-layout-3">
                       <h3 class="u-text u-text-default u-text-3">Ingles</h3>
-                      <a href="Materia.php?mt=ingles" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-3">Ir<br>
+                      <a href="materia.php?mt=ingles" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-3">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-4">
                     <div class="u-container-layout u-valign-top u-container-layout-4">
                       <h3 class="u-text u-text-default u-text-4">Educacion Fisica</h3>
-                      <a href="Materia.php?mt=educacion%20fisica" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-4">Ir<br>
+                      <a href="materia.php?mt=educacion%20fisica" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-4">Ir<br>
                       </a>
                     </div>
                   </div>
@@ -123,14 +124,14 @@
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-5">
                     <div class="u-container-layout u-valign-top u-container-layout-5">
                       <h3 class="u-text u-text-default u-text-5">Economia</h3>
-                      <a href="Materia.php?mt=economia" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-5">Ir<br>
+                      <a href="materia.php?mt=economia" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-5">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-6">
                     <div class="u-container-layout u-valign-top u-container-layout-6">
                       <h3 class="u-text u-text-default u-text-6">Analisis de sistemas</h3>
-                      <a href="Materia.php?mt=analisis%20de%20sistemas" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-6">Ir<br>
+                      <a href="materia.php?mt=analisis%20de%20sistemas" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-6">Ir<br>
                       </a>
                     </div>
                   </div>
@@ -147,14 +148,14 @@
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-7">
                     <div class="u-container-layout u-valign-top u-container-layout-7">
                       <h3 class="u-text u-text-default u-text-7">Redes</h3>
-                      <a href="Materia.php?mt=redes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-7">Ir<br>
+                      <a href="materia.php?mt=redes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-7">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-8">
                     <div class="u-container-layout u-valign-top u-container-layout-8">
                       <h3 class="u-text u-text-default u-text-8">Base de datos</h3>
-                      <a href="Materia.php?mt=base%20de%20datos" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-8">Ir<br>
+                      <a href="materia.php?mt=base%20de%20datos" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-8">Ir<br>
                       </a>
                     </div>
                   </div>
@@ -164,8 +165,8 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-9">
                     <div class="u-container-layout u-valign-top u-container-layout-9">
-                      <h3 class="u-text u-text-default u-text-9"></h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-9">Ir<br>
+                      <h3 class="u-text u-text-default u-text-9">Lengua y Literatura</h3>
+                      <a href="materia.php?mt=lengua%20y%20literatura" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-9">Ir<br>
                       </a>
                     </div>
                   </div>

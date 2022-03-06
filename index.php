@@ -2,13 +2,13 @@
 include "functions/conexion.php";
 error_reporting(0);
 
-$result = consulta($mysqli, "SELECT * FROM Archivos");
+$result = consulta($mysqli, "SELECT * FROM Archivos WHERE once IS NULL");
 $rows = mysqli_num_rows($result);
 
-$result = consulta($mysqli, "SELECT * FROM Usuarios");
+$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE siete IS NULL");
 $rows3 = mysqli_num_rows($result);
 
-$result = consulta($mysqli, "SELECT * FROM Usuarios");
+$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE siete IS NULL");
 $rows2 = mysqli_num_rows($result);
 mysqli_free_result($result);
 
@@ -63,7 +63,7 @@ mysqli_free_result($result);
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-<?php session_start(); if (isset($_SESSION["Login"])){echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='Perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='Registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar Sesion</a>";}?>
+<?php session_start(); if (isset($_SESSION["Login"])){echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar Sesion</a>";}?>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -72,7 +72,7 @@ mysqli_free_result($result);
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item">
-<?php session_start(); if (isset($_SESSION["Login"])){echo "<a class='u-button-style u-nav-link' href='Perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "<a class='u-button-style u-nav-link' href='Registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar sesion</a>";}?>
+<?php session_start(); if (isset($_SESSION["Login"])){echo "<a class='u-button-style u-nav-link' href='perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "<a class='u-button-style u-nav-link' href='registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar sesion</a>";}?>
 </li></ul>
               </div>
             </div>
@@ -122,21 +122,21 @@ mysqli_free_result($result);
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-5">
               <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-9">Materias</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-10">Contenido por materias</h2>
-              <a href="Materias.php" data-page-id="102623523" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-1">Materias</a>
+              <a href="materias.php" data-page-id="102623523" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-1">Materias</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-custom-item u-hover-feature u-list-item u-repeater-item u-list-item-6">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-6">
               <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-11">Cursos</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-12">Cursos de apoyo</h2>
-              <a href="Cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a>
+              <a href="cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-7">
               <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-13">Calendario</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-14">Muestra de subtítulos</h2>
-              <a href="Calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a>
+              <a href="calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a>
             </div>
           </div>
         </div>

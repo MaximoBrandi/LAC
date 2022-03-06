@@ -9,7 +9,7 @@
         if ($typeOP == 1) {
             session_start();
             if (isset($_SESSION["Login"])) {
-                header('Location: Selector.php');
+                header('Location: Index.php');
             }
         }  
     }

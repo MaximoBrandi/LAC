@@ -207,6 +207,7 @@
 .u-section-2 .u-container-layout-3 {
   padding-left: 30px;
   padding-right: 30px;
+  max-height: 120px;
 }
 
 .u-section-2 .u-text-4 {
@@ -478,7 +479,7 @@
   }
 
   .u-section-2 .u-layout-cell-1 {
-    min-height: 825px;
+    min-height: 720px;
   }
 
   .u-section-2 .u-container-layout-1 {
@@ -583,7 +584,7 @@
   }
 
   .u-section-2 .u-layout-wrap-2 {
-    margin-top: -4579px;
+    margin-top: 0px;
     margin-right: initial;
     margin-left: initial;
     width: auto;
@@ -607,7 +608,7 @@
   }
 
   .u-section-2 .u-list-1 {
-    margin-top: 4152px;
+    margin-top: 60px;
     margin-right: auto;
   }
 }

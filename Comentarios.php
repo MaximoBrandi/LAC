@@ -1,37 +1,47 @@
 <?php 
-error_reporting(0);
-include "functions/checkSession.php";
-checkSession(1);
-include "functions/functions.php";
-$GLOBALS["register"] = "1";
+    error_reporting(0);
+    include "functions/checkSession.php";
+    include_once "functions/conexion.php";
+    checkSession(0);
 
-if (isset($_POST["name"])) {
-  $GLOBALS["register"] = register($_POST);
-}
+    $result = consulta($mysqli, "SELECT uno FROM Usuarios WHERE id = ".$_SESSION["Login"]);
+    $rowx = mysqli_fetch_assoc($result);
+    $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$_SESSION["Login"]); $wor = mysqli_fetch_assoc($wor);
 
+    $sql = "SELECT * FROM Usuarios WHERE id =". $_SESSION["Login"];
+    $result = consulta($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
 
+        //Delete comment system
+
+        if (isset($_GET["del"])) {
+          $result = consulta($mysqli, "SELECT * FROM Comentarios WHERE id =".$_GET["del"]);
+          $rxo = mysqli_fetch_assoc($result);
+    
+          if ($rxo["uno"] == $row["uno"]) {
+            $result = consulta($mysqli, "UPDATE Comentarios SET cinco = 'DAE' WHERE id =".$_GET["del"]);
+          }
+        }
+    
 ?>
 
+<!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
-  <script src="dist/js/vex.combined.min.js"></script>
-    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
-    <link rel="stylesheet" href="dist/css/vex.css" />
-    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
-    <script src="dist/js/vex.comands.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LAC, Registrarse / Iniciar sesion">
+    <meta name="keywords" content="LAC, Buscador">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Registrarse</title>
+    <title>Comentarios</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="Registrase.css" media="screen">
+<link rel="stylesheet" href="Comentarios.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
     <link rel="icon" href="images/favicon1.png">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Alegreya+Sans+SC:100,100i,300,300i,400,400i,500,500i,700,700i,800,800i,900,900i">
+    
     
     
     
@@ -46,7 +56,7 @@ if (isset($_POST["name"])) {
 		]
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Registrarse">
+    <meta property="og:title" content="Comentarios">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -64,18 +74,9 @@ if (isset($_POST["name"])) {
 </g></svg>
             </a>
           </div>
-          <?php 
-          
-          if ($GLOBALS["register"] == "true") {
-            echo "<script>alertSuccessfulRegister()</script>";
-          } else if ($GLOBALS["register"] == "false"){
-            echo "<script>alertErrorRegister()</script>";
-          }
-          
-          ?>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -83,7 +84,7 @@ if (isset($_POST["name"])) {
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -91,44 +92,36 @@ if (isset($_POST["name"])) {
           </div>
         </nav>
       </div></header>
-    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-5ba3">
+    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Registrase / Iniciar sesion</h1>
-        <p class="u-text u-text-2">Aqui puedes iniciar sesion o registrarte&nbsp;</p>
+        <h1 class="u-text u-text-default u-text-1">Comentarios</h1>
+        <p class="u-text u-text-2">Aqui puedes ver tus comentarios</p>
       </div>
     </section>
-    <section class="u-clearfix u-section-2" id="sec-0c1f">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">Registrate<br>
-        </h2>
-        <a href="iniciar-Sesion.php" data-page-id="714603816" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Inicia sesión<br>
-        </a>
-        <div class="u-form u-form-1">
-          <form action="registrase.php" method="POST" class="u-form-spacing-10" name="formm" style="padding: 10px;">
-            <div class="u-form-group u-form-name">
-              <label for="name-1081" class="u-label">Nombre y Apellido</label>
-              <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-email u-form-group">
-              <label for="email-1081" class="u-label">Email</label>
-              <input type="email" placeholder="Introduzca una dirección de correo electrónico válida" id="email-1081" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-group-3">
-              <label for="text-4660" class="u-label">Curso</label>
-              <input type="text" placeholder="Introduzca aqui el curso al que pertenece" id="text-4660" name="curso" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-            </div>
-            <div class="u-form-group u-form-group-4">
-              <label for="text-6857" class="u-label">Contraseña</label>
-              <input type="password" placeholder="Ingrese la contraseña de su cuenta" id="text-6857" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-            </div>
-            <div class="u-form-group u-form-group-5">
-              <label for="text-3c64" class="u-label">Codigo de verificacion</label>
-              <input type="text" placeholder="Introduzca el codigo que el Delegado le envió por email" id="text-3c64" name="verification" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="32">
-            </div>
-            <div class="u-align-left u-form-group u-form-submit">
-              <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">
-            </div>
-          </form>
+    <section class="u-clearfix u-section-4" id="sec-9eb5">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
+          <div class="u-container-layout u-valign-bottom u-container-layout-1">
+            <?php 
+            $sql = "SELECT * FROM Comentarios WHERE uno= '".$rowx["uno"]."' AND cinco IS NULL";
+            $result = consulta($mysqli, $sql);
+            if ($result->num_rows > 0) {
+              while($rowz = $result->fetch_assoc()) {
+                echo "<div class='u-container-style u-group u-group-2'>
+                <div class='u-container-layout'>
+                  <p class='u-text u-text-2'> ".base64_decode($rowz["dos"])."</p>
+                  <img class=' u-image u-image-circle u-preserve-proportions u-image-1' alt='' src='".base64_decode($wor["dos"])."' data-image-width='64' data-image-height='64'>
+                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($rowz["cuatro"])."</h6>
+                  <a class='u-text u-text-grey-50 u-text-4' href='comentarios.php?del=".$rowz["id"]."'>Eliminar comentario</a>
+                </div>
+              </div>";
+              }
+            } else {
+              echo "0 results";
+            }
+
+            ?>
+          </div>
         </div>
       </div>
     </section>
