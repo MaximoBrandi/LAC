@@ -10,12 +10,12 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LAC, Calendario">
+    <meta name="keywords" content="LAC, Cursos, Desarrollo web">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Calendario</title>
+    <title>Cursos</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="calendario.css" media="screen">
+<link rel="stylesheet" href="cursos.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -35,7 +35,7 @@
 		]
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Calendario">
+    <meta property="og:title" content="Cursos">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -71,14 +71,79 @@
           </div>
         </nav>
       </div></header>
-    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9545">
+    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-187c">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Calendario</h1>
-        <p class="u-text u-text-2">Aqui podras encontrar los proximos examenes y trabajos a entregar, al mismo tiempo que puedes agregar eventos personales.</p>
+        <h1 class="u-text u-text-default u-text-1">Cursos</h1>
+        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y examenes para organizarte sin perderle pista a nada.
+        </p>
       </div>
     </section>
-    <section class="u-clearfix u-section-2" id="sec-09af">
-      <div class="u-align-left u-clearfix u-sheet u-sheet-1"></div>
+    <section class="u-clearfix u-section-2" id="sec-219c">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1"><!--blog--><!--blog_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}--><!--/blog_options_json-->
+        <div class="u-blog u-container-style u-expanded-width u-layout-grid u-blog-1">
+          <div class="u-list-control"></div>
+          <div class="u-repeater u-repeater-1"><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <h1 class="u-text u-text-1">Desarrollo web</h1>
+                <a class="u-post-header-link" href="blog/enviar-5.html"><!--blog_post_image-->
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-2">Cursos de aprender programando sobre desarrollo web, bloques 1,2,3 y 4<br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+            </div><!--/blog_post--><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                <h1 class="u-text u-text-3">Titular de muestra</h1>
+                <a class="u-post-header-link" href="blog/enviar-4.html"><!--blog_post_image-->
+                  <img src="images/5.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-2"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-4">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              </div>
+            </div><!--/blog_post--><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                <h1 class="u-text u-text-5">Titular de muestra</h1>
+                <a class="u-post-header-link" href="blog/enviar-3.html"><!--blog_post_image-->
+                  <img src="images/6.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-3"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-6">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              </div>
+            </div><!--/blog_post--><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <h1 class="u-text u-text-7">Titular de muestra</h1>
+                <a class="u-post-header-link" href="blog/enviar-2.html"><!--blog_post_image-->
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-4"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-8">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              </div>
+            </div><!--/blog_post--><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-5">
+                <h1 class="u-text u-text-9">Titular de muestra</h1>
+                <a class="u-post-header-link" href="blog/enviar-1.html"><!--blog_post_image-->
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-5"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-10">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              </div>
+            </div><!--/blog_post--><!--blog_post-->
+            <div class="u-blog-post u-container-style u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-6">
+                <h1 class="u-text u-text-11">Titular de muestra</h1>
+                <a class="u-post-header-link" href="blog/enviar.html"><!--blog_post_image-->
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-6"><!--/blog_post_image-->
+                </a>
+                <p class="u-text u-text-12">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+              </div>
+            </div><!--/blog_post-->
+          </div>
+          <div class="u-list-control"></div>
+        </div><!--/blog-->
+      </div>
     </section>
     
     

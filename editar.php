@@ -1,8 +1,16 @@
 <?php 
     error_reporting(0);
     include "functions/checkSession.php";
-    include_once "functions/conexion.php";
+    include "functions/functions.php";
+
     checkSession(0);
+
+    $edit = "0";
+    $id = $_GET["id"];
+    if (isset($_POST["materia"])) {
+      session_start();
+      $edit = edit($_POST, $_SESSION["Login"], $_GET);
+    }
     
 ?>
 
@@ -11,18 +19,17 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="LAC, Materia">
+    <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Materia</title>
+    <title>Editar</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="materia.css" media="screen">
+<link rel="stylesheet" href="editar.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
     <link rel="icon" href="images/favicon1.png">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Alegreya+Sans+SC:100,100i,300,300i,400,400i,500,500i,700,700i,800,800i,900,900i">
-    
     
     
     
@@ -36,8 +43,13 @@
 				"mailto:delegacion510.2022@gmail.com"
 		]
 }</script>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Materia">
+    <meta property="og:title" content="Editar">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -47,6 +59,15 @@
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
         </h1>
+        <?php 
+          
+          if ($edit == "true") {
+            echo "<script>alertSuccessfulEdit(".$id.")</script>";
+          } else if ($edit == "false"){
+            echo "<script>alertErrorEdit()</script>";
+          }
+          
+          ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -73,47 +94,54 @@
           </div>
         </nav>
       </div></header>
-    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
+    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-3aa8">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1"><?php echo $_GET["mt"];?></h1>
-        <div class="u-custom-php u-custom-php-1" data-custom-php="<!--custom_php--><?php
-    echo $materianombre ?><!--/custom_php-->"></div>
-        <p class="u-text u-text-2">Aqui encontras utilidades o materiales que te ayudaran con <?php echo $_GET["mt"];?></p>
+        <h1 class="u-text u-text-default u-text-1">Editar material</h1>
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-always u-gallery-1" id="carousel-8775">
-          <div class="u-gallery-inner u-gallery-inner-1" role="listbox">
-            <?php  
-            $sql = "SELECT * FROM Archivos WHERE dos='".base64_encode($_GET["mt"])."' AND once IS NULL";
-            $result = consulta($mysqli, $sql);
-            if ($result->num_rows > 0) {
-              // output data of each row
-              $count = 1;
-              while($row = $result->fetch_assoc()) {
-                echo "<div class='u-effect-hover-liftUp u-gallery-item u-gallery-item-".$count."' data-href='material.php?id=".$row["id"]."'>
-                  <div class='u-back-slide'>
-                    <img class='u-back-image u-expanded' src='".base64_decode($row["seis"])."' alt='".base64_decode($row["siete"])."'>
+    <section class="u-clearfix u-section-2" id="sec-326f">
+      <div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
+        <div class="u-container-style u-grey-10 u-group u-group-1">
+          <div class="u-container-layout u-valign-middle u-container-layout-1">
+            <h1 class="u-text u-text-default u-text-1">Editar material</h1>
+            <div class="u-form u-form-1">
+              <form action="editar.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+                <div class="u-form-group u-form-name">
+                  <label for="name-6cbd" class="u-label">Materia</label>
+                  <input type="text" id="name-6cbd" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">
                 </div>
-                  <div class='u-over-slide u-shading u-over-slide-1'>
-                    <h3 class='u-gallery-heading'>".base64_decode($row["siete"])."</h3>
-                    <p class='u-gallery-text'>".base64_decode($row["ocho"])."</p>
-                  </div>
-                </div>";
-                $count = $count + 1;
-              }
-            } else {
-              echo "0 results";
-            }
-            ?>
-
+                <div class="u-form-email u-form-group">
+                  <label for="email-6cbd" class="u-label">Profesor</label>
+                  <input type="text" id="email-6cbd" name="profesor" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
+                </div>
+                <div class="u-form-group u-form-group-3">
+                  <label for="text-5717" class="u-label">Link archivo</label>
+                  <input type="text" id="text-5717" name="link-archivo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
+                </div>
+                <div class="u-form-group u-form-group-4">
+                  <label for="text-41fe" class="u-label">Link imagen</label>
+                  <input type="text" placeholder="" id="text-41fe" name="link-miniatura" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
+                </div>
+                <div class="u-form-group u-form-group-5">
+                  <label for="text-9f72" class="u-label">Nombre material</label>
+                  <input type="text" placeholder="" id="text-9f72" name="nombre-material" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="75">
+                </div>
+                <div class="u-form-group u-form-textarea u-form-group-6">
+                  <label for="textarea-c3dc" class="u-label">Informacion materia</label>
+                  <textarea rows="4" cols="50" id="textarea-c3dc" name="materia-info" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255"></textarea>
+                </div>
+                <div class="u-form-group u-form-group-7">
+                  <label for="text-190b" class="u-label">Tags</label>
+                  <input type="text" placeholder="separados por &quot;/&quot;" id="text-190b" name="tags" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                </div>
+                <div class="u-align-left u-form-group u-form-submit">
+                  <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <section class="u-clearfix u-section-3" id="sec-209c">
-      <div class="u-clearfix u-sheet u-sheet-1"></div>
     </section>
     
     

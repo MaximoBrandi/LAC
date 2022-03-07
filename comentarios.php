@@ -4,13 +4,25 @@
     include_once "functions/conexion.php";
     checkSession(0);
 
-    if (isset($_GET["tag"])) {
-      $sql = "SELECT * FROM Archivos WHERE nueve LIKE '%".base64_decode($_GET["tag"])."%'";
-      $result = consulta($mysqli, $sql);
-    }
+    $result = consulta($mysqli, "SELECT uno FROM Usuarios WHERE id = ".$_SESSION["Login"]);
+    $rowx = mysqli_fetch_assoc($result);
+    $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$_SESSION["Login"]); $wor = mysqli_fetch_assoc($wor);
 
-    $convert = array('#' => 'sharp');
-    $reconvert = array('sharp' => '#');
+    $sql = "SELECT * FROM Usuarios WHERE id =". $_SESSION["Login"];
+    $result = consulta($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+        //Delete comment system
+
+        if (isset($_GET["del"])) {
+          $result = consulta($mysqli, "SELECT * FROM Comentarios WHERE id =".$_GET["del"]);
+          $rxo = mysqli_fetch_assoc($result);
+    
+          if ($rxo["uno"] == $row["uno"]) {
+            $result = consulta($mysqli, "UPDATE Comentarios SET cinco = 'DAE' WHERE id =".$_GET["del"]);
+          }
+        }
+    
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +33,9 @@
     <meta name="keywords" content="LAC, Buscador">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Buscador</title>
+    <title>Comentarios</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="buscador.css" media="screen">
+<link rel="stylesheet" href="comentarios.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -44,7 +56,7 @@
 		]
 }</script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Buscador">
+    <meta property="og:title" content="Comentarios">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -82,33 +94,36 @@
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Buscador</h1>
-        <p class="u-text u-text-2">Aqui podras buscar entre todos los articulos de la pagina</p>
+        <h1 class="u-text u-text-default u-text-1">Comentarios</h1>
+        <p class="u-text u-text-2">Aqui puedes ver tus comentarios</p>
       </div>
     </section>
-    <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
-      <div class="u-clearfix u-sheet u-sheet-1">
-          <div class="u-form u-form-1">
-            <form action="buscar.php" method="post" class="u-form-spacing-10" name="form" style="padding: 10px;">
-              <div class="u-form-group u-form-name">
-                <label for="name-1081" class="u-label">Nombre</label>
-                <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
-              </div>
-              <div class="u-form-group u-form-group-3">
-              <label for="text-3c64" class="u-label">Tag</label>
-              <input type="radio" name="selector" value="tag">
-              <label for="text-3c64" class="u-label">Materia</label>
-              <input type="radio" name="selector" value="materia">
-              </div>
-              <div class="u-align-left u-form-group u-form-submit">
-                <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">
-              </div>
-            </form>
+    <section class="u-clearfix u-section-4" id="sec-9eb5">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
+          <div class="u-container-layout u-valign-bottom u-container-layout-1">
+            <?php 
+            $sql = "SELECT * FROM Comentarios WHERE uno= '".$rowx["uno"]."' AND cinco IS NULL";
+            $result = consulta($mysqli, $sql);
+            if ($result->num_rows > 0) {
+              while($rowz = $result->fetch_assoc()) {
+                echo "<div class='u-container-style u-group u-group-2'>
+                <div class='u-container-layout'>
+                  <p class='u-text u-text-2'> ".base64_decode($rowz["dos"])."</p>
+                  <img class=' u-image u-image-circle u-preserve-proportions u-image-1' alt='' src='".base64_decode($wor["dos"])."' data-image-width='64' data-image-height='64'>
+                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($rowz["cuatro"])."</h6>
+                  <a class='u-text u-text-grey-50 u-text-4' href='comentarios.php?del=".$rowz["id"]."'>Eliminar comentario</a>
+                </div>
+              </div>";
+              }
+            } else {
+              echo "0 results";
+            }
+
+            ?>
           </div>
         </div>
-    </section>
-    <section class="u-clearfix u-section-3" id="sec-209c">
-      <div class="u-clearfix u-sheet u-sheet-1"></div>
+      </div>
     </section>
     
     

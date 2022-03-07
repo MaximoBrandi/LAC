@@ -2,29 +2,33 @@
     error_reporting(0);
     include "functions/checkSession.php";
     include "functions/functions.php";
-
     checkSession(0);
 
-    $edit = "0";
-    $id = $_GET["id"];
+    $return = "0";
+    $id = "0";
     if (isset($_POST["materia"])) {
       session_start();
-      $edit = edit($_POST, $_SESSION["Login"], $_GET);
+      $return = upload($_POST, $_SESSION["Login"]);
     }
-    
+
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Editar</title>
+    <title>Subir</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="editar.css" media="screen">
+<link rel="stylesheet" href="subir.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -43,13 +47,8 @@
 				"mailto:delegacion510.2022@gmail.com"
 		]
 }</script>
-    <script src="dist/js/vex.combined.min.js"></script>
-    <script>vex.defaultOptions.className = 'vex-theme-os'</script>
-    <link rel="stylesheet" href="dist/css/vex.css" />
-    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
-    <script src="dist/js/vex.comands.js"></script>
     <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Editar">
+    <meta property="og:title" content="Subir">
     <meta property="og:description" content="">
     <meta property="og:type" content="website">
   </head>
@@ -61,10 +60,10 @@
         </h1>
         <?php 
           
-          if ($edit == "true") {
-            echo "<script>alertSuccessfulEdit(".$id.")</script>";
-          } else if ($edit == "false"){
-            echo "<script>alertErrorEdit()</script>";
+          if ($return[0] == "true") {
+            echo "<script>alertSuccessfulUpload(".$return[1].")</script>";
+          } else if ($return[0] == "false"){
+            echo "<script>alertErrorUpload()</script>";
           }
           
           ?>
@@ -96,16 +95,18 @@
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-3aa8">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Editar material</h1>
+        <h1 class="u-text u-text-default u-text-1">Subir material</h1>
+        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y examenes para organizarte sin perderle pista a nada.
+        </p>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-326f">
       <div class="u-clearfix u-sheet u-valign-middle-xl u-sheet-1">
         <div class="u-container-style u-grey-10 u-group u-group-1">
           <div class="u-container-layout u-valign-middle u-container-layout-1">
-            <h1 class="u-text u-text-default u-text-1">Editar material</h1>
+            <h1 class="u-text u-text-default u-text-1">Subir materiales</h1>
             <div class="u-form u-form-1">
-              <form action="editar.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+              <form action="subir.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
                   <label for="name-6cbd" class="u-label">Materia</label>
                   <input type="text" id="name-6cbd" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">
