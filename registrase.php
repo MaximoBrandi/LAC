@@ -101,7 +101,7 @@ if (isset($_POST["name"])) {
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-1">Registrate<br>
         </h2>
-        <a href="iniciar-Sesion.php" data-page-id="714603816" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Inicia sesión<br>
+        <a href="iniciar-sesion.php" data-page-id="714603816" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Inicia sesión<br>
         </a>
         <div class="u-form u-form-1">
           <form action="registrase.php" method="POST" class="u-form-spacing-10" name="formm" style="padding: 10px;">

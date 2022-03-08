@@ -104,7 +104,7 @@ if (isset($_POST["name"])) {
         <a href="registrase.php" data-page-id="736912226" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Registrate<br>
         </a>
         <div class="u-form u-form-1">
-          <form action="iniciar-Sesion.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
+          <form action="iniciar-sesion.php" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
             <div class="u-form-group u-form-name">
               <label for="name-1081" class="u-label">Nombre y Apellido</label>
               <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">

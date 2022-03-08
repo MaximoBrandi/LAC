@@ -213,7 +213,7 @@ if (isset($_POST["comentario"])) {
               <div class="share-options">
                         <p class="title">Compartir</p>
                         <div class="link-container">
-                            <textarea class="link js-copytextarea">https://lac-lyp.000webhostapp.com/Material.php?id=<?php echo $_GET["id"]?></textarea>
+                            <textarea class="link js-copytextarea">https://lac-lyp.000webhostapp.com/material.php?id=<?php echo $_GET["id"]?></textarea>
                             <button class="copy-btn">Copiado!</button>
                         </div>
               </div>

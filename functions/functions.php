@@ -17,10 +17,10 @@ function login($email, $password){
       $_SESSION["Login"] = $row["id"];
       header('Location: index.php');
     }else{
-      header('Location: Iniciar-Sesion.php?al=1');
+      header('Location: iniciar-sesion.php?al=1');
     }
   }else if($row["id"] == NULL || $row["siete"] != NULL){
-    header('Location: Iniciar-Sesion.php?al=2');
+    header('Location: iniciar-sesion.php?al=2');
   }
 }
 
