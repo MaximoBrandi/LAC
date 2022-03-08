@@ -21,6 +21,8 @@ $row3 = mysqli_fetch_assoc($result);
 $convert = array('#' => 'sharp');
 $reconvert = array('sharp' => '#');
 
+$notify = 0;
+
 $dresz = "'".$_GET["id"]."'";
 $pos = strpos(base64_decode($row3["tres"]), $dresz);
 
@@ -45,12 +47,15 @@ if (isset($_GET["li"]) & $pos2 === false) {
           $blyax = implode("/", $blyat);
           $blyax = base64_encode($blyax);
           $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
+          $notify = 1;
+          
     }else if($_GET["li"] == 2){
         $blyat = explode( '/', base64_decode($row6["siete"]));
         $blyat[1] = $blyat[1] + 1;
         $blyax = implode("/", $blyat);
         $blyax = base64_encode($blyax);
         $dou = consulta($mysqli, "UPDATE Perfil SET siete = '$blyax' WHERE id =".$row5["id"]);
+        $notify = 2;
     }
     if ($row2["ocho"] == NULL) {
       $dou = consulta($mysqli, "UPDATE Usuarios SET ocho = '$dresztx' WHERE id =".$_SESSION["Login"]);
@@ -72,9 +77,11 @@ if(isset($_GET["fv"])){
   if ($row2["tres"] == NULL) {
       $sql = "UPDATE Perfil SET tres = '".base64_encode($var)."' WHERE id =". $_SESSION["Login"];
       $result = consulta($mysqli, $sql);
+      $notify = 3;
   }else{
       $sql = "UPDATE Perfil SET tres = '".base64_encode($var2)."' WHERE id =". $_SESSION["Login"];
       $result = consulta($mysqli, $sql);
+      $notify = 3;
   }
 }
 
@@ -82,6 +89,7 @@ if(isset($_GET["fv"])){
 if (isset($_POST["comentario"])) {
   $sql = "INSERT INTO Comentarios VALUES (NULL, '".$row2["uno"]."', '".base64_encode($_POST["comentario"])."', '".base64_encode($_GET["id"])."', '".base64_encode(date('l jS F Y h-i-s A'))."', NULL)";
   $dou = consulta($mysqli, $sql);
+  $notify = 4;
   $sql = "SELECT id FROM Comentarios WHERE uno = '".$row2["uno"]."'";
   $dou = consulta($mysqli, $sql);
   $rowu = mysqli_fetch_assoc($dou);
@@ -101,6 +109,9 @@ if (isset($_POST["comentario"])) {
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -148,6 +159,19 @@ if (isset($_POST["comentario"])) {
 </g></svg>
             </a>
           </div>
+          <?php 
+          
+          if ($notify == 1) {
+            echo "<script>alertify.notify('Te ha gustado esta publicacion', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+          } else if ($notify == 2) {
+            echo "<script>alertify.notify('No te ha gustado esta publicacion', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+          } else if ($notify == 3) {
+            echo "<script>alertify.notify('Agregado a favoritos', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+          } else if ($notify == 4) {
+            echo "<script>alertify.notify('Comentario publicado', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+          }
+          
+          ?>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
@@ -169,7 +193,7 @@ if (isset($_POST["comentario"])) {
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-136f">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Material</h1>
-        <p class="u-text u-text-2">Aqui puedes ver detalles sobre el material seleccionado, guardarlo, descargarlo o comentar sobre el.</p>
+        <p class="u-text u-text-2">Aquí puedes ver detalles sobre el material seleccionado, guardarlo, descargarlo o comentar sobre él.</p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-9af8">

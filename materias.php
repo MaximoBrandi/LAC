@@ -74,7 +74,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9c4b">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Materias</h1>
-        <p class="u-text u-text-2">Aqui encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.&nbsp;</p>
+        <p class="u-text u-text-2">Aquí encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.&nbsp;</p>
         <a class="u-text u-text-1" href="buscador.php"> Ir al buscador </a>
       </div>
     </section>
@@ -112,7 +112,7 @@
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-4">
                     <div class="u-container-layout u-valign-top u-container-layout-4">
-                      <h3 class="u-text u-text-default u-text-4">Educacion Fisica</h3>
+                      <h3 class="u-text u-text-default u-text-4">Educación Física</h3>
                       <a href="materia.php?mt=educacion%20fisica" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-4">Ir<br>
                       </a>
                     </div>
@@ -123,14 +123,14 @@
                 <div class="u-layout-row">
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-5">
                     <div class="u-container-layout u-valign-top u-container-layout-5">
-                      <h3 class="u-text u-text-default u-text-5">Economia</h3>
+                      <h3 class="u-text u-text-default u-text-5">Economía</h3>
                       <a href="materia.php?mt=economia" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-5">Ir<br>
                       </a>
                     </div>
                   </div>
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-6">
                     <div class="u-container-layout u-valign-top u-container-layout-6">
-                      <h3 class="u-text u-text-default u-text-6">Analisis de sistemas</h3>
+                      <h3 class="u-text u-text-default u-text-6">Análisis de sistemas</h3>
                       <a href="materia.php?mt=analisis%20de%20sistemas" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-6">Ir<br>
                       </a>
                     </div>

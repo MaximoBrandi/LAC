@@ -83,7 +83,7 @@ mysqli_free_result($result);
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-d508">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Libre Apoyo Curricular</h1>
-        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y examenes para organizarte sin perderle pista a nada.
+        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y exámenes para organizarte sin perderle pista a nada.
         </p>
       </div>
     </section>
@@ -92,7 +92,7 @@ mysqli_free_result($result);
         <div class="u-repeater u-repeater-1">
           <div class="u-align-center u-container-style u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-container-layout-1">
-              <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">12</h1>
+              <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">9</h1>
               <p class="u-text u-text-2">Materias</p>
             </div>
           </div>
@@ -127,16 +127,16 @@ mysqli_free_result($result);
           </div>
           <div class="u-align-center u-container-style u-custom-item u-hover-feature u-list-item u-repeater-item u-list-item-6">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-6">
-              <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-11">Cursos</h1>
+            <!--  <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-11">Cursos</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-12">Cursos de apoyo</h2>
-              <a href="cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a>
+              <a href="cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a> -->
             </div>
           </div>
           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-7">
-              <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-13">Calendario</h1>
-              <h2 class="u-subtitle u-text u-text-default u-text-14">Muestra de subtítulos</h2>
-              <a href="calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a>
+            <!--  <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-13">Calendario</h1>
+              <h2 class="u-subtitle u-text u-text-default u-text-14">Calendario 5° 10°</h2>
+              <a href="calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a> -->
             </div>
           </div>
         </div>

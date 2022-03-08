@@ -95,7 +95,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Comentarios</h1>
-        <p class="u-text u-text-2">Aqui puedes ver tus comentarios</p>
+        <p class="u-text u-text-2">Aquí puedes ver tus comentarios</p>
       </div>
     </section>
     <section class="u-clearfix u-section-4" id="sec-9eb5">

@@ -94,13 +94,13 @@ if (isset($_POST["name"])) {
         }
 
         ?>
-        <h1 class="u-text u-text-default u-text-1">Registrase / Iniciar sesion</h1>
-        <p class="u-text u-text-2">Aqui puedes iniciar sesion o registrarte&nbsp;</p>
+        <h1 class="u-text u-text-default u-text-1">Registrarse / Iniciar sesión</h1>
+        <p class="u-text u-text-2">Aquí puedes iniciar sesión o registrarte&nbsp;</p>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-0c1f">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">Iniciar Sesion</h2>
+        <h2 class="u-text u-text-1">Iniciar Sesión</h2>
         <a href="registrase.php" data-page-id="736912226" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Registrate<br>
         </a>
         <div class="u-form u-form-1">

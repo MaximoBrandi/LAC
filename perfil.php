@@ -52,12 +52,16 @@
     if (isset($_POST["webIMG"])) {
       $sql = "UPDATE Perfil SET dos = '".base64_encode($_POST["webIMG"])."' WHERE id =".$_SESSION["Login"];
       $result = consulta($mysqli, $sql);
+      $state = 3;
     }
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <script src="dist/js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os'</script>
     <link rel="stylesheet" href="dist/css/vex.css" />
@@ -129,17 +133,19 @@
       <?php 
       
       if ($state == 1) {
-        echo "<script>alertSuccessfulChange()</script>";
+        echo "<script>alertify.notify('Contraseña cambiada correctamente', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
       }else if ($state == 2){
-        echo "<script>alertErrorChange()</script>";
-      }
+        echo "<script>alertify.notify('Error al cambiar la contraseña', 'error', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+      }else if ($state == 3) {
+        echo "<script>alertify.notify('Foto de perfil cambiada', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+      } 
       
       ?>
     </header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-c925">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Perfil</h1>
-        <p class="u-text u-text-2">Aqui puedes configurar el como otras personas pueden verte, ver tus favoritos y tus comentarios</p>
+        <p class="u-text u-text-2">Aquí puedes configurar él como otras personas pueden verte, ver tus favoritos y tus comentarios</p>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-36e7">
@@ -254,13 +260,13 @@
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-7">
-                <button onclick="alertCloseSession()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-4" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Eliminar<br>&nbsp;Cuenta<br>
+                <button onclick="alertCloseSession()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-4" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Eliminar<br>&nbsp;cuenta<br>
                 </button>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-8">
-                <button onclick="alertDeleteAccount()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-5" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Cerrar sesion</button>
+                <button onclick="alertDeleteAccount()" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-5" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Cerrar sesión</button>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item">

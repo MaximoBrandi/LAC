@@ -75,7 +75,7 @@ if (isset($_POST["name"])) {
           ?>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -83,7 +83,7 @@ if (isset($_POST["name"])) {
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
 </li></ul>
               </div>
             </div>
@@ -93,8 +93,8 @@ if (isset($_POST["name"])) {
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-5ba3">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-text u-text-default u-text-1">Registrase / Iniciar sesion</h1>
-        <p class="u-text u-text-2">Aqui puedes iniciar sesion o registrarte&nbsp;</p>
+        <h1 class="u-text u-text-default u-text-1">Registrarse / Iniciar sesión</h1>
+        <p class="u-text u-text-2">Aquí puedes iniciar sesión o registrarte&nbsp;</p>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-0c1f">
@@ -115,15 +115,15 @@ if (isset($_POST["name"])) {
             </div>
             <div class="u-form-group u-form-group-3">
               <label for="text-4660" class="u-label">Curso</label>
-              <input type="text" placeholder="Introduzca aqui el curso al que pertenece" id="text-4660" name="curso" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+              <input type="text" placeholder="Introduzca aquí el curso al que pertenece" id="text-4660" name="curso" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </div>
             <div class="u-form-group u-form-group-4">
               <label for="text-6857" class="u-label">Contraseña</label>
               <input type="password" placeholder="Ingrese la contraseña de su cuenta" id="text-6857" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </div>
             <div class="u-form-group u-form-group-5">
-              <label for="text-3c64" class="u-label">Codigo de verificacion</label>
-              <input type="text" placeholder="Introduzca el codigo que el Delegado le envió por email" id="text-3c64" name="verification" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="32">
+              <label for="text-3c64" class="u-label">Código de verificacion</label>
+              <input type="text" placeholder="Introduzca el código que recibió para registrarse" id="text-3c64" name="verification" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="32">
             </div>
             <div class="u-align-left u-form-group u-form-submit">
               <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">

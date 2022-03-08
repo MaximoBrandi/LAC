@@ -78,7 +78,7 @@
         <h1 class="u-text u-text-default u-text-1"><?php echo $_GET["mt"];?></h1>
         <div class="u-custom-php u-custom-php-1" data-custom-php="<!--custom_php--><?php
     echo $materianombre ?><!--/custom_php-->"></div>
-        <p class="u-text u-text-2">Aqui encontras utilidades o materiales que te ayudaran con <?php echo $_GET["mt"];?></p>
+        <p class="u-text u-text-2">Aquí encontraras utilidades o materiales que te ayudaran con <?php echo $_GET["mt"];?></p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
