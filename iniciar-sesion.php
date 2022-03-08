@@ -25,7 +25,7 @@ if (isset($_POST["name"])) {
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Iniciar Sesion</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="iniciar-Sesion.css" media="screen">
+<link rel="stylesheet" href="iniciar-sesion.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">

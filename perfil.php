@@ -9,7 +9,7 @@
     $result = consulta($mysqli, $sql);
     $row = mysqli_fetch_assoc($result);
 
-    $sql = "SELECT * FROM Perfil WHERE uno = '". $row["tres"] . "'";
+    $sql = "SELECT * FROM Perfil WHERE id = ". $_SESSION["Login"];
     $result = consulta($mysqli, $sql);
     $row2 = mysqli_fetch_assoc($result);
 

@@ -61,7 +61,11 @@ function upload($post, $session){
   $stra = strtolower($post["materia"]);
   $stra = unaccent($stra);
   if (!isset($row["uno"])) {
+    if (base64_decode($row2["cinco"]) == "alumno") {
+      $sql = "INSERT INTO Archivos VALUES (NULL, '".$row2["cuatro"]."', '".base64_encode($stra)."', '".base64_encode($post["profesor"])."', '".$row2["uno"]."', '".base64_encode($post["link-archivo"])."', '".base64_encode($post["link-miniatura"])."', '".base64_encode($post["nombre-material"])."', '".base64_encode($post["materia-info"])."', '".$post["tags"]."', '".base64_encode(date('l jS F Y h-i-s A'))."' , 'REVISION', NULL)";
+    }else if (base64_decode($row2["cinco"]) == "admin"){
      $sql = "INSERT INTO Archivos VALUES (NULL, '".$row2["cuatro"]."', '".base64_encode($stra)."', '".base64_encode($post["profesor"])."', '".$row2["uno"]."', '".base64_encode($post["link-archivo"])."', '".base64_encode($post["link-miniatura"])."', '".base64_encode($post["nombre-material"])."', '".base64_encode($post["materia-info"])."', '".$post["tags"]."', '".base64_encode(date('l jS F Y h-i-s A'))."' , NULL, NULL)";
+    }
      $result = consulta($mysqli, $sql);
      $consulta = consulta($mysqli, "SELECT MAX(`id`) FROM `Archivos`");
      $id = mysqli_fetch_assoc($consulta);
