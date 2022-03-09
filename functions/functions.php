@@ -33,7 +33,7 @@ function register($post) {
   $row2 = mysqli_fetch_assoc($consulta);
   if (!isset($row["uno"]) && isset($row2["uno"]) && !isset($row2["tres"]) || isset($row["siete"]) && isset($row2["uno"]) && !isset($row2["tres"]))  {
       $consulta = consulta($mysqli, "INSERT INTO Usuarios VALUES (NULL , '" .base64_encode($post["name"]). "', '" .base64_encode(md5($post["password"])). "', '".base64_encode($post["email"])."', '".base64_encode($post["curso"])."', '".$row2["cuatro"]."', '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, NULL)");
-      $lol = "INSERT INTO Perfil VALUES (NULL , '". $mysqli->real_escape_string(base64_encode($post["email"])) ."', '".base64_encode("images/11.svg")."', NULL, NULL, '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, '".base64_encode("0/0")."')";
+      $lol = "INSERT INTO Perfil VALUES (NULL , '". $mysqli->real_escape_string(base64_encode($post["email"])) ."', '".base64_encode("images/11.svg")."', NULL, NULL, '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, '".base64_encode("0/0")."', NULL)";
       $consulta = consulta($mysqli, $lol);
       $consulta = consulta($mysqliroot, "UPDATE verification SET tres = '" . base64_encode($post["name"]). "' WHERE uno ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
       $consulta = consulta($mysqli, "SELECT MAX(`id`) FROM `Usuarios`");

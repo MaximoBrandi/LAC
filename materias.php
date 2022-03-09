@@ -154,7 +154,7 @@
                   </div>
                   <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-8">
                     <div class="u-container-layout u-valign-top u-container-layout-8">
-                      <h3 class="u-text u-text-default u-text-8">Base de datos</h3>
+                      <h3 class="u-text u-text-default u-text-8">Bases de datos</h3>
                       <a href="materia.php?mt=base%20de%20datos" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-8">Ir<br>
                       </a>
                     </div>
