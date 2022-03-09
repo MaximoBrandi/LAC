@@ -111,7 +111,7 @@
                         }{
                           echo $_POST["selector"];
                         };  ?>"</h1>
-        <p class="u-text u-text-2">Aqui encontras las busquedas con los filtros que has seleccionado</p>
+        <p class="u-text u-text-2">Aquí encontraras las búsquedas con los filtros que has seleccionado</p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">

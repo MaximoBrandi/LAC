@@ -17,7 +17,7 @@ function alertCloseSession(){
 
 function alertDeleteAccount(){
     vex.dialog.confirm({
-        message: '¿Estás seguro de que quieres cerrar sesion?.',
+        message: '¿Estás seguro de que quieres cerrar sesión?.',
         className: 'vex-theme-default',
         input: [
             `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='perfil.php?clss=1'">Confirmar</button>`,
@@ -44,7 +44,7 @@ function alertInexistingAccount(){
 
 function alertErrorAccount(){
     vex.dialog.confirm({
-        message: 'Fallo al iniciar sesion.',
+        message: 'Fallo al iniciar sesión.',
         className: 'vex-theme-default',
         input: [
             '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Confirmar</button>'
@@ -96,7 +96,7 @@ function alertErrorUpload(){
 
 function alertSuccessfulEdit(id){
     vex.dialog.confirm({
-        message: 'Actualizacion de archivo exitosa.',
+        message: 'Actualización de archivo exitosa.',
         className: 'vex-theme-default',
         input: [
             `<button type="submit" class="vex-dialog-button-secondary vex-dialog-button vex-first" onclick="window.location.href='material.php?id=${id}'">Confirmar</button>`

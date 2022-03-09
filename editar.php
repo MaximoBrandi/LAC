@@ -127,7 +127,7 @@
                   <input type="text" placeholder="" id="text-9f72" name="nombre-material" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="75">
                 </div>
                 <div class="u-form-group u-form-textarea u-form-group-6">
-                  <label for="textarea-c3dc" class="u-label">Informacion materia</label>
+                  <label for="textarea-c3dc" class="u-label">Información materia</label>
                   <textarea rows="4" cols="50" id="textarea-c3dc" name="materia-info" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255"></textarea>
                 </div>
                 <div class="u-form-group u-form-group-7">

@@ -4,6 +4,8 @@
     include_once "functions/conexion.php";
     checkSession(0);
     
+    $result = consulta($mysqli, "SELECT * FROM Materias WHERE seis = '".$_GET["mt"]."'");
+    $rowy = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -78,7 +80,7 @@
         <h1 class="u-text u-text-default u-text-1"><?php echo $_GET["mt"];?></h1>
         <div class="u-custom-php u-custom-php-1" data-custom-php="<!--custom_php--><?php
     echo $materianombre ?><!--/custom_php-->"></div>
-        <p class="u-text u-text-2">Aqui encontras utilidades o materiales que te ayudaran con <?php echo $_GET["mt"];?></p>
+        <p class="u-text u-text-2">Aquí encontraras utilidades o materiales que te ayudaran con <?php echo $rowy["uno"];?><br><br>Profesor: <?php echo $rowy["dos"];?><br>Horario: <?php echo $rowy["tres"];?><br>Examenes: <?php if($rowy["cuatro"] !== "" || $rowy["cuatro"] == NULL){ echo "Ninguno"; }else{echo $rowy["cuatro"];}?><br>Tareas: <?php if($rowy["cinco"] == "" || $rowy["cinco"] == NULL){ echo "Ninguno"; }else{echo $rowy["cinco"];}?><br><?php echo $rowy["siete"];?></p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">

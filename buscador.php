@@ -83,7 +83,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Buscador</h1>
-        <p class="u-text u-text-2">Aqui podras buscar entre todos los articulos de la pagina</p>
+        <p class="u-text u-text-2">Aquí podras buscar entre todos los artículos de la página</p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
@@ -92,7 +92,7 @@
             <form action="buscar.php" method="post" class="u-form-spacing-10" name="form" style="padding: 10px;">
               <div class="u-form-group u-form-name">
                 <label for="name-1081" class="u-label">Nombre</label>
-                <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
+                <input type="text" placeholder="" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
               </div>
               <div class="u-form-group u-form-group-3">
               <label for="text-3c64" class="u-label">Tag</label>

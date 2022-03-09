@@ -96,7 +96,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-3aa8">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Subir material</h1>
-        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y examenes para organizarte sin perderle pista a nada.
+        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y exámenes para organizarte sin perderle pista a nada.
         </p>
       </div>
     </section>
@@ -128,7 +128,7 @@
                   <input type="text" placeholder="" id="text-9f72" name="nombre-material" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="75">
                 </div>
                 <div class="u-form-group u-form-textarea u-form-group-6">
-                  <label for="textarea-c3dc" class="u-label">Informacion materia</label>
+                  <label for="textarea-c3dc" class="u-label">Información materia</label>
                   <textarea rows="4" cols="50" id="textarea-c3dc" name="materia-info" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255"></textarea>
                 </div>
                 <div class="u-form-group u-form-group-7">
