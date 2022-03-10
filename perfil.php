@@ -155,13 +155,13 @@
             <div class="u-layout-col">
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-1">
-                  <h1 class="u-align-center u-text u-title u-text-1">Favoritos<br>
+                  <h1 class="u-align-center u-text u-title u-text-1">Publicaciones<br>
                   </h1>
                   <div class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-gallery u-layout-grid u-lightbox u-no-transition u-show-text-on-hover u-gallery-1" id="carousel-63be">
                     <div class="u-gallery-inner u-gallery-inner-1" role="listbox">
                     <?php  
                     if ($row2["tres"] != NULL) {
-                      $sql = "SELECT * FROM Archivos WHERE id IN (".base64_decode($row2["tres"]).")";
+                      $sql = "SELECT * FROM Archivos WHERE id IN (".base64_decode($row2["tres"]).") AND once IS NULL";
                       $result = consulta($mysqli, $sql);
                       if ($result->num_rows > 0) {
                         $count = 1;
@@ -197,7 +197,7 @@
               </div>
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
               <div class="u-container-layout u-container-layout-2">
-                  <h1 class="u-align-center u-text u-title u-text-3">Comentarios<br>
+                  <h1 class="u-align-center u-text u-title u-text-3">Favoritos<br>
                   </h1>
                   <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
                   <?php 
@@ -222,7 +222,7 @@
                   ?>
                   </div>
                   <h4 class="u-align-center u-text u-text-default u-text-7">
-                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="comentarios.php">Ver mas</a>
+                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="comentarios.php?id=<?php echo $_SESSION["Login"]; ?>">Ver mas</a>
                   </h4>
                 </div>
               </div>

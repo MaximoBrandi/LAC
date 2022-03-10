@@ -14,11 +14,28 @@ $rows2 = mysqli_num_rows($result);
 $rows5 = "";
 session_start();
 
-$sql = "SELECT * FROM Perfil WHERE id = ".$_SESSION["Login"];
-$result = consulta($mysqli, $sql);
-$rows5 = mysqli_fetch_assoc($result);
-mysqli_free_result($result);
+$remplazar = array('Mon' => 'Lunes', 'Tue' => 'Martes', 'Wed' => 'Miercoles', 'Thu' => 'Jueves', 'Fri' => 'Viernes');
 
+$strx = str_replace( array_keys( $remplazar ),array_values( $remplazar ),date("D"));
+$strxz = str_replace( array_keys( $remplazar ),array_values( $remplazar ),date("d F"));
+if (isset($_SESSION["Login"])) {
+  $sql = "SELECT * FROM Perfil WHERE id = ".$_SESSION["Login"];
+  $result = consulta($mysqli, $sql);
+  $rows5 = mysqli_fetch_assoc($result);
+
+  $resulty = consulta($mysqli, "SELECT * FROM Materias WHERE cinco LIKE '%".$strxz."%'");
+
+  $zia = explode(" ", $strxz);
+  $zia[0] = $zia[0] + 1;
+  $stzx = implode(" ", $zia);
+  $resultm = consulta($mysqli, "SELECT * FROM Materias WHERE cinco LIKE '%".$stzx."%'");
+}
+$xz = str_replace( array_keys( $remplazar ),array_values( $remplazar ),date('D'));
+
+$phrase1 = "alertify.alert().setContent('<center><img height=400 src=images/schedule/".$xz."-m.png>";
+$phrase2 = "<img height=400 src=images/schedule/".$xz."-t.png></center>').show();";
+$phrase3 = "</center>').show()";
+$wos = "images/schedule/".$xz."-t.png";
 ?>
 
 <html style="font-size: 13px;" lang="es-AR">
@@ -26,6 +43,7 @@ mysqli_free_result($result);
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
     <link rel="stylesheet" href="dist/css/themes/semantic.css" />
+    <script src="dist/js/alertify-functions.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Libre Apoyo Curricular, 0, 0, 0, 0">
@@ -73,12 +91,12 @@ mysqli_free_result($result);
           </div>
           <div class="u-custom-menu u-nav-container">
             <?php
-
-            if ($rows5["ocho"] != NULL || $rows5["ocho"] != '' ) {
-              echo base64_decode($rows5["ocho"]);
-              $nya = consulta($mysqli, "UPDATE Perfil SET ocho = '' WHERE id = ".$_SESSION["Login"]);
+            if (isset($rows5["uno"])) {
+              if ($rows5["ocho"] != NULL || $rows5["ocho"] != '' ) {
+                echo base64_decode($rows5["ocho"]);
+                $nya = consulta($mysqli, "UPDATE Perfil SET ocho = '' WHERE id = ".$_SESSION["Login"]);
+              }
             }
-
             ?>
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 <?php if (isset($_SESSION["Login"])){echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar Sesion</a>";}?>
@@ -97,12 +115,12 @@ mysqli_free_result($result);
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
+        <script></script>
       </div></header>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-d508">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Libre Apoyo Curricular</h1>
-        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y exámenes para organizarte sin perderle pista a nada.
-        </p>
+        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y exámenes para organizarte sin perderle pista a nada.<br><br><a onclick="<?php echo $phrase1; if(file_exists($wos)){echo $phrase2;} else {echo $phrase3;}?>">  Horarios de hoy <?php echo $strx; ?></a><br> Tareas para hoy: <?php if($resulty->num_rows > 0) { while($rowq = $resulty->fetch_assoc()) { $rae = explode("_", $rowq["cinco"]); echo $rae[0]." ".$rowq["uno"];} }?>  <br> Tareas para mañana: <?php if($resultm->num_rows > 0) { while($rowq = $resultm->fetch_assoc()) { $rae = explode("_", $rowq["cinco"]); echo $rae[0];} }?> </p>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-bf0d">
@@ -122,7 +140,7 @@ mysqli_free_result($result);
           </div>
           <div class="u-align-center u-container-style u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-container-layout-3">
-              <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000"><?php echo $rows3; ?></h1>
+              <h1 class="u-text u-title u-text-5" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">1</h1>
               <p class="u-text u-text-6">Colaboradores</p>
             </div>
           </div>
@@ -152,9 +170,9 @@ mysqli_free_result($result);
           </div>
           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-7">
-            <!--  <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-13">Calendario</h1>
+              <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-13">Calendario</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-14">Calendario 5° 10°</h2>
-              <a href="calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a> -->
+              <a href="calendario.php" data-page-id="53839610" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-3">Calendario</a>
             </div>
           </div>
         </div>
@@ -196,7 +214,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         </a>
         <div>
         <p class="u-align-center u-social-icons-1">
-            ver0.3
+            ver0.4
           </p>
         </div>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
