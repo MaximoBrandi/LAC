@@ -3,7 +3,6 @@ error_reporting(0);
 include "functions/checkSession.php";
 include "functions/functions.php";
 include "functions/conexion.php";
-checkSession(0);
 session_start();
 
 $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
@@ -14,6 +13,9 @@ $row = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT * FROM Usuarios WHERE id = ".$_SESSION["Login"]);
 $row2 = mysqli_fetch_assoc($result);
+
+$result = consulta($mysqli, "SELECT seis FROM Materias WHERE seis = '".base64_decode($row["dos"])."'");
+$rowpw = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT * FROM Perfil WHERE id = ".$_SESSION["Login"]);
 $row3 = mysqli_fetch_assoc($result);
@@ -173,7 +175,8 @@ if (isset($_POST["comentario"])) {
           
           ?>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
@@ -181,7 +184,8 @@ if (isset($_POST["comentario"])) {
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>

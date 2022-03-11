@@ -155,7 +155,7 @@
             <div class="u-layout-col">
               <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-1">
-                  <h1 class="u-align-center u-text u-title u-text-1">Publicaciones<br>
+                  <h1 class="u-align-center u-text u-title u-text-1">Favoritos<br>
                   </h1>
                   <div class="u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-gallery u-layout-grid u-lightbox u-no-transition u-show-text-on-hover u-gallery-1" id="carousel-63be">
                     <div class="u-gallery-inner u-gallery-inner-1" role="listbox">

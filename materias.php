@@ -3,11 +3,16 @@
     include "functions/checkSession.php";
     checkSession(0);
     
+    $unox = "alertify.alert().set({'startMaximized':true, 'message':'<center><img height=400 src=images/schedule/Mañana.png></center>'}).show();";
+    $dosx = "alertify.alert().set({'startMaximized':true, 'message':'<center><img height=400 src=images/schedule/Tarde.png></center>'}).show();";
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Materias">
@@ -74,7 +79,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9c4b">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Materias</h1>
-        <p class="u-text u-text-2">Aquí encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.&nbsp;</p>
+        <p class="u-text u-text-2">Aquí encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.<br>Horarios: <a onclick="<?php echo $unox; ?>">Mañana</a> <a onclick="<?php echo $dosx; ?>">Tarde</a>&nbsp;</p><br>
         <a class="u-text u-text-1" href="buscador.php"> Ir al buscador </a>
       </div>
     </section>

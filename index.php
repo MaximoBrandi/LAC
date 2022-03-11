@@ -1,18 +1,19 @@
 <?php 
 include "functions/conexion.php";
-//error_reporting(0);
+error_reporting(0);
 
-$result = consulta($mysqli, "SELECT * FROM Archivos WHERE once IS NULL");
+$result = consulta($mysqli, "SELECT id FROM Archivos WHERE once IS NULL");
 $rows = mysqli_num_rows($result);
 
-$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE siete IS NULL");
-$rows3 = mysqli_num_rows($result);
-
-$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE siete IS NULL");
+$result = consulta($mysqli, "SELECT id FROM Usuarios WHERE siete IS NULL");
 $rows2 = mysqli_num_rows($result);
+
+$result = consulta($mysqli, "SELECT id FROM Usuarios WHERE cinco = 'YWRtaW4=' OR cinco = 'Y29sYWJvcmFkb3I='");
+$colaboradores = mysqli_num_rows($result);
 
 $rows5 = "";
 session_start();
+
 
 $remplazar = array('Mon' => 'Lunes', 'Tue' => 'Martes', 'Wed' => 'Miercoles', 'Thu' => 'Jueves', 'Fri' => 'Viernes');
 
@@ -40,6 +41,7 @@ $wos = "images/schedule/".$xz."-t.png";
 
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
     <link rel="stylesheet" href="dist/css/themes/semantic.css" />
@@ -92,14 +94,15 @@ $wos = "images/schedule/".$xz."-t.png";
           <div class="u-custom-menu u-nav-container">
             <?php
             if (isset($rows5["uno"])) {
-              if ($rows5["ocho"] != NULL || $rows5["ocho"] != '' ) {
-                echo base64_decode($rows5["ocho"]);
-                $nya = consulta($mysqli, "UPDATE Perfil SET ocho = '' WHERE id = ".$_SESSION["Login"]);
+              if ($rows5["nueve"] != NULL || $rows5["nueve"] != '' ) {
+                echo "<script>alertify.set('notifier','position', 'top-center');</script>";
+                echo $rows5["nueve"];
+                $nya = consulta($mysqli, "UPDATE Perfil SET nueve = '' WHERE id = ".$_SESSION["Login"]);
               }
             }
             ?>
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-<?php if (isset($_SESSION["Login"])){echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar Sesion</a>";}?>
+<?php if (isset($_SESSION["Login"])){echo "<script>Push.Permission.request();</script></li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='perfil.php' style='padding: 10px 0px;'>Perfil</a>"; } else {echo "</li><li class='u-nav-item'><a class='u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90' href='registrase.php' style='padding: 10px 0px;'>Registrarse / Iniciar Sesion</a>";}?>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -128,7 +131,7 @@ $wos = "images/schedule/".$xz."-t.png";
         <div class="u-repeater u-repeater-1">
           <div class="u-align-center u-container-style u-list-item u-repeater-item">
             <div class="u-container-layout u-similar-container u-container-layout-1">
-              <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">9</h1>
+              <h1 class="u-text u-title u-text-1" data-animation-name="counter" data-animation-event="scroll" data-animation-duration="3000">10</h1>
               <p class="u-text u-text-2">Materias</p>
             </div>
           </div>
@@ -163,9 +166,9 @@ $wos = "images/schedule/".$xz."-t.png";
           </div>
           <div class="u-align-center u-container-style u-custom-item u-hover-feature u-list-item u-repeater-item u-list-item-6">
             <div class="u-container-layout u-similar-container u-valign-middle u-container-layout-6">
-            <!--  <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-11">Cursos</h1>
+              <h1 class="u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-title u-text-11">Cursos</h1>
               <h2 class="u-subtitle u-text u-text-default u-text-12">Cursos de apoyo</h2>
-              <a href="cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a> -->
+              <a href="cursos.php" data-page-id="933423666" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-2">Cursos</a>
             </div>
           </div>
           <div class="u-align-center u-container-style u-custom-item u-list-item u-repeater-item">
@@ -214,8 +217,11 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         </a>
         <div>
         <p class="u-align-center u-social-icons-1">
-            ver0.4
+            ver0.4-3b
           </p>
+          <a target="_blank" href="https://docs.google.com/document/d/1KNlCQGzTXXfai6aKiVD7kUM_jsNogXfUrbiv8hlODYk" class="u-align-center u-social-icons-1">
+            Creditos y postularse
+          </a>
         </div>
         <div class="u-align-left u-social-icons u-spacing-10 u-social-icons-1">
           <a class="u-social-url" target="_blank" data-type="Telegram" title="Telegram" href="https://t.me/+T6AcLgYlwBU1MGFh"><span class="u-icon u-social-icon u-social-telegram u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 112 112" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-9fce"></use></svg><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-9fce"><circle fill="currentColor" cx="56.1" cy="56.1" r="55"></circle><path fill="#FFFFFF" d="M18.4,53.2l64.7-24.9c3-1.1,5.6,0.7,4.7,5.3l0,0l-11,51.8c-0.8,3.7-3,4.6-6.1,2.8L53.9,75.8l-8.1,7.8

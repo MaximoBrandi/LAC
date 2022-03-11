@@ -1,16 +1,23 @@
 <?php 
-    //error_reporting(0);
+       ini_set("display_errors",1);
+       error_reporting(E_ALL);
+    error_reporting(0);
     include "functions/checkSession.php";
+    if (!isset($_POST["materia"])) {
+      include_once "functions/conexion.php";
+    }
     include "functions/functions.php";
-    include_once "functions/conexion.php";
 
     checkSession(0);
 
     $edit = "0";
     $id = $_GET["id"];
 
-    $result = consulta($mysqli, "SELECT * FROM Archivos WHERE id = ".$_GET["id"]);
-    $rowso = mysqli_fetch_assoc($result);
+    if (!isset($_POST["materia"])) {
+      $result = consulta($mysqli, "SELECT * FROM Archivos WHERE id =".$_GET["id"]);
+      $rowso = mysqli_fetch_assoc($result);
+  
+    }
 
     if (isset($_POST["materia"])) {
       session_start();
@@ -82,7 +89,8 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="material.php?id=<?php echo $rowso["id"] ?>" style="padding: 10px 0px;">Material</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
@@ -90,7 +98,8 @@
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="material.php?id=<?php echo $rowso["id"] ?>" style="padding: 10px 0px;">Material</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
@@ -113,31 +122,31 @@
               <form action="editar.php?id=<?php echo $_GET["id"]; ?>" method="POST" class="u-form-spacing-10" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-name">
                   <label for="name-6cbd" class="u-label">Materia</label>
-                  <input type="text" id="name-6cbd" value="<?php echo base64_decode($rowso["dos"]); ?>" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">
+                  <input type="text" id="name-6cbd" value="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["dos"]); }?>" name="materia" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="40">
                 </div>
                 <div class="u-form-email u-form-group">
                   <label for="email-6cbd" class="u-label">Profesor</label>
-                  <input type="text" id="email-6cbd" value="<?php echo base64_decode($rowso["tres"]); ?>" name="profesor" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
+                  <input type="text" id="email-6cbd" value="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["tres"]); }?>" name="profesor" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="60">
                 </div>
                 <div class="u-form-group u-form-group-3">
                   <label for="text-5717" class="u-label">Link archivo</label>
-                  <input type="text" id="text-5717" value="<?php echo base64_decode($rowso["cinco"]); ?>" name="link-archivo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
+                  <input type="text" id="text-5717" value="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["cinco"]); }?>" name="link-archivo" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
                 </div>
                 <div class="u-form-group u-form-group-4">
                   <label for="text-41fe" class="u-label">Link imagen</label>
-                  <input type="text" placeholder="" id="text-41fe" value="<?php echo base64_decode($rowso["seis"]); ?>" name="link-miniatura" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
+                  <input type="text" placeholder="" id="text-41fe" value="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["seis"]); }?>" name="link-miniatura" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="255">
                 </div>
                 <div class="u-form-group u-form-group-5">
                   <label for="text-9f72" class="u-label">Nombre material</label>
-                  <input type="text" placeholder="" id="text-9f72" value="<?php echo base64_decode($rowso["siete"]); ?>" name="nombre-material" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="75">
+                  <input type="text" placeholder="" id="text-9f72" value="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["siete"]); }?>" name="nombre-material" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="75">
                 </div>
                 <div class="u-form-group u-form-textarea u-form-group-6">
                   <label for="textarea-c3dc" class="u-label">Información materia</label>
-                  <textarea rows="4" cols="50" id="textarea-c3dc" placeholder="<?php echo base64_decode($rowso["ocho"]); ?>" name="materia-info" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255"></textarea>
+                  <textarea rows="4" cols="50" id="textarea-c3dc" placeholder="<?php if(!isset($_POST["materia"])){ echo base64_decode($rowso["ocho"]); }?>" name="materia-info" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255"></textarea>
                 </div>
                 <div class="u-form-group u-form-group-7">
                   <label for="text-190b" class="u-label">Tags</label>
-                  <input type="text" placeholder="separados por &quot;/&quot;" id="text-190b" value="<?php echo $rowso["nueve"]; ?>" name="tags" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                  <input type="text" placeholder="separados por &quot;/&quot;" id="text-190b" value="<?php if(!isset($_POST["materia"])){ echo $rowso["nueve"]; }?>" name="tags" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
                 </div>
                 <div class="u-align-left u-form-group u-form-submit">
                   <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">

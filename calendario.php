@@ -1,13 +1,22 @@
 <?php 
     error_reporting(0);
     include "functions/checkSession.php";
+    include_once "functions/conexion.php";
     checkSession(0);
-    
+    $state = 0;
+    if (isset($_POST["name"])) {
+      $sql = "INSERT INTO Calendario VALUES (NULL, '".$mysqli->real_escape_string($_POST["fecha"])." 15:46:06', '".$mysqli->real_escape_string($_POST["fecha"])." 00:08:30', '".$mysqli->real_escape_string($_POST["name"])."', '".$mysqli->real_escape_string($_POST["desc"]).".')";
+      $ryad = consulta($mysqli, $sql);
+      $state = 1;
+    }
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Calendario">
@@ -45,6 +54,13 @@
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
         </h1>
+        <?php
+
+        if ($state == 1) {
+          echo "<script>alertify.notify('Agregado correctamente al calendario', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+        }
+
+        ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -83,8 +99,27 @@
 
 <div class="ui menu">
   <div class="header item"></div>
-  <iframe width="100%" height="800" style="border:1px solid black;" src="dist/owo/example-page.html" title="W3Schools Free Online Web Tutorials"></iframe>
+  <iframe width="100%" height="820"  src="dist/owo/example-page.html" ></iframe>
       </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
+      <div class="u-clearfix u-sheet u-sheet-1">
+          <div class="u-form u-form-1">
+            <form action="calendario.php" method="post" class="u-form-spacing-10" name="form" style="padding: 10px;">
+              <div class="u-form-group u-form-name">
+                <label for="name-1081" class="u-label">Nombre</label>
+                <input type="text" placeholder="" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="90">
+                <label for="name-1081" class="u-label">Descripcion</label>
+                <input type="text" placeholder="" id="name-1081" name="desc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255">
+                <label for="name-1081" class="u-label">Fecha</label>
+                <input type="text" placeholder="2022-00-00" value="2022-XX-XX" id="name-1081" name="fecha" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="30">
+              </div>
+              <div class="u-align-left u-form-group u-form-submit">
+                <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">
+              </div>
+            </form>
+          </div>
+        </div>
     </section>
     
     
