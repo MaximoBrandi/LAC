@@ -10,6 +10,9 @@ function login($email, $password){
   $consulta = "SELECT  id, uno, dos, tres, siete FROM Usuarios WHERE tres='" . $mysqli->real_escape_string(base64_encode($emaila)) . "'";
   $result = consulta($mysqli, $consulta);
   $row = mysqli_fetch_assoc($result);
+  $consulta = "SELECT  ocho FROM Perfil WHERE tres=";
+  $result = consulta($mysqli, $consulta);
+  $row2 = mysqli_fetch_assoc($result);
 
   if ($row["siete"] == NULL && $row["id"] != NULL) {
     if (md5($contrasena) == base64_decode($row["dos"])) {
