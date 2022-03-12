@@ -14,6 +14,7 @@ if (isset($_POST["name"])) {
 
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
   <script src="dist/js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os'</script>
     <link rel="stylesheet" href="dist/css/vex.css" />
@@ -73,6 +74,12 @@ if (isset($_POST["name"])) {
           }
           
           ?>
+
+               <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
@@ -124,6 +131,125 @@ if (isset($_POST["name"])) {
             <div class="u-form-group u-form-group-5">
               <label for="text-3c64" class="u-label">Código de verificacion</label>
               <input type="text" placeholder="Introduzca el código que recibió para registrarse" id="text-3c64" name="verification" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required" maxlength="32">
+            </div>
+            <style>/* From cssbuttons.io by @lenin55 */
+.cl-toggle-switch {
+ position: relative;
+}
+
+.cl-switch {
+ position: relative;
+ display: inline-block;
+}
+/* Input */
+.cl-switch > input {
+ appearance: none;
+ -moz-appearance: none;
+ -webkit-appearance: none;
+ z-index: -1;
+ position: absolute;
+ right: 6px;
+ top: -8px;
+ display: block;
+ margin: 0;
+ border-radius: 50%;
+ width: 40px;
+ height: 40px;
+ background-color: rgb(0, 0, 0, 0.38);
+ outline: none;
+ opacity: 0;
+ transform: scale(1);
+ pointer-events: none;
+ transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+/* Track */
+.cl-switch > span::before {
+ content: "";
+ float: right;
+ display: inline-block;
+ margin: 5px 0 5px 10px;
+ border-radius: 7px;
+ width: 36px;
+ height: 14px;
+ background-color: rgb(0, 0, 0, 0.38);
+ vertical-align: top;
+ transition: background-color 0.2s, opacity 0.2s;
+}
+/* Thumb */
+.cl-switch > span::after {
+ content: "";
+ position: absolute;
+ top: 2px;
+ right: 16px;
+ border-radius: 50%;
+ width: 20px;
+ height: 20px;
+ background-color: #fff;
+ box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+ transition: background-color 0.2s, transform 0.2s;
+}
+/* Checked */
+.cl-switch > input:checked {
+ right: -10px;
+ background-color: #85b8b7;
+}
+
+.cl-switch > input:checked + span::before {
+ background-color: #85b8b7;
+}
+
+.cl-switch > input:checked + span::after {
+ background-color: #018786;
+ transform: translateX(16px);
+}
+/* Hover, Focus */
+.cl-switch:hover > input {
+ opacity: 0.04;
+}
+
+.cl-switch > input:focus {
+ opacity: 0.12;
+}
+
+.cl-switch:hover > input:focus {
+ opacity: 0.16;
+}
+/* Active */
+.cl-switch > input:active {
+ opacity: 1;
+ transform: scale(0);
+ transition: transform 0s, opacity 0s;
+}
+
+.cl-switch > input:active + span::before {
+ background-color: #8f8f8f;
+}
+
+.cl-switch > input:checked:active + span::before {
+ background-color: #85b8b7;
+}
+/* Disabled */
+.cl-switch > input:disabled {
+ opacity: 0;
+}
+
+.cl-switch > input:disabled + span::before {
+ background-color: #ddd;
+}
+
+.cl-switch > input:checked:disabled + span::before {
+ background-color: #bfdbda;
+}
+
+.cl-switch > input:checked:disabled + span::after {
+ background-color: #61b5b4;
+}</style>
+            <div class="cl-toggle-switch u-form-group u-form-group-5">
+              <label class="cl-switch">
+                <label for="text-3c64" class="u-label">Modo oscuro</label>
+                <input name="theme" value="black" type="checkbox">
+                <span></span>
+              </label>
             </div>
             <div class="u-align-left u-form-group u-form-submit">
               <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">

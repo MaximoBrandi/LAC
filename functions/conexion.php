@@ -1,5 +1,5 @@
 <?php
-    //error_reporting(0);
+    error_reporting(0);
     $mysqli = new mysqli('bys90mwmlxp3h3btspjg-mysql.services.clever-cloud.com', 'u031mxblwmv6jste', 'TNxAJsElicGfsD5VPgyD', 'bys90mwmlxp3h3btspjg');
     $mysqliroot = new mysqli('b1mipyacpgyvckhdks8r-mysql.services.clever-cloud.com', 'uxzogkwa7ux7v3zo', 'AOSkfL3LobP25pP4Ef6T', 'b1mipyacpgyvckhdks8r');
   

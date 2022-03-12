@@ -3,7 +3,6 @@ error_reporting(0);
 include "functions/checkSession.php";
 include "functions/functions.php";
 include "functions/conexion.php";
-checkSession(0);
 session_start();
 
 $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
@@ -14,6 +13,9 @@ $row = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT * FROM Usuarios WHERE id = ".$_SESSION["Login"]);
 $row2 = mysqli_fetch_assoc($result);
+
+$result = consulta($mysqli, "SELECT seis FROM Materias WHERE seis = '".base64_decode($row["dos"])."'");
+$rowpw = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT * FROM Perfil WHERE id = ".$_SESSION["Login"]);
 $row3 = mysqli_fetch_assoc($result);
@@ -109,6 +111,7 @@ if (isset($_POST["comentario"])) {
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
     <link rel="stylesheet" href="dist/css/themes/semantic.css" />
@@ -172,8 +175,20 @@ if (isset($_POST["comentario"])) {
           }
           
           ?>
+                      <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
@@ -181,7 +196,8 @@ if (isset($_POST["comentario"])) {
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
@@ -208,7 +224,7 @@ if (isset($_POST["comentario"])) {
               <a class="u-post-header-link" href="blog/enviar-5.html"><!--blog_post_header_content--><?php echo base64_decode($row["siete"]) ?><!--/blog_post_header_content--></a>
             </h2><!--/blog_post_header--><!--blog_post_metadata-->
             <div class="u-blog-control u-metadata u-text-grey-50 u-metadata-1"><!--blog_post_metadata_author-->
-              <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><?php echo base64_decode($row["cuatro"]) ?><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
+              <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><a style="color:black;" href="perfil-otro.php?id=<?php echo $row5["id"]; ?>"> <?php echo base64_decode($row["cuatro"]) ?></a><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
               <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content--><?php echo base64_decode($row["dies"]) ?><!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date--><!--blog_post_metadata_category-->
               <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='buscar.php?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
               <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comentarios (<?php echo mysqli_num_rows($resultx) ?>)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->

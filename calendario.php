@@ -1,13 +1,23 @@
 <?php 
     error_reporting(0);
     include "functions/checkSession.php";
+    include_once "functions/conexion.php";
     checkSession(0);
-    
+    $state = 0;
+    if (isset($_POST["name"])) {
+      $sql = "INSERT INTO Calendario VALUES (NULL, '".$mysqli->real_escape_string($_POST["fecha"])." 15:46:06', '".$mysqli->real_escape_string($_POST["fecha"])." 00:08:30', '".$mysqli->real_escape_string($_POST["name"])."', '".$mysqli->real_escape_string($_POST["desc"]).".')";
+      $ryad = consulta($mysqli, $sql);
+      $state = 1;
+    }
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Calendario">
@@ -40,11 +50,30 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="Inicio.html" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
         </h1>
+        <?php
+
+        if ($state == 1) {
+          echo "<script>alertify.notify('Agregado correctamente al calendario', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
+        }
+        
+
+        ?>
+                    <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
@@ -54,16 +83,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Inicio.html" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Registrase.html" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Inicio.html" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Registrase.html" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -74,11 +103,36 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9545">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Calendario</h1>
-        <p class="u-text u-text-2">Aqui podras encontrar los proximos examenes y trabajos a entregar, al mismo tiempo que puedes agregar eventos personales.</p>
+        <p class="u-text u-text-2">Aqui podras encontrar los proximos examenes y trabajos a entregar, al mismo tiempo que puedes agregar eventos personales (Todavia en desarrollo esto ultimo).</p>
       </div>
     </section>
     <section class="u-clearfix u-section-2" id="sec-09af">
-      <div class="u-align-left u-clearfix u-sheet u-sheet-1"></div>
+      <div class="u-align-left u-clearfix u-sheet u-sheet-1">
+      <div class="ui container">
+
+<div class="ui menu">
+  <div class="header item"></div>
+  <iframe width="100%" height="820"  src="dist/owo/example-page.html" ></iframe>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-5b30">
+      <div class="u-clearfix u-sheet u-sheet-1">
+          <div class="u-form u-form-1">
+            <form action="calendario.php" method="post" class="u-form-spacing-10" name="form" style="padding: 10px;">
+              <div class="u-form-group u-form-name">
+                <label for="name-1081" class="u-label">Nombre</label>
+                <input type="text" placeholder="" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="90">
+                <label for="name-1081" class="u-label">Descripcion</label>
+                <input type="text" placeholder="" id="name-1081" name="desc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="255">
+                <label for="name-1081" class="u-label">Fecha</label>
+                <input type="text" placeholder="2022-00-00" value="2022-XX-XX" id="name-1081" name="fecha" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="" maxlength="30">
+              </div>
+              <div class="u-align-left u-form-group u-form-submit">
+                <input type="submit" value="Enviar" class="u-btn u-btn-submit u-button-style">
+              </div>
+            </form>
+          </div>
+        </div>
     </section>
     
     

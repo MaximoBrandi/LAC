@@ -3,11 +3,17 @@
     include "functions/checkSession.php";
     checkSession(0);
     
+    $unox = "alertify.alert().set({'startMaximized':true, 'message':'<center><img height=400 src=images/schedule/Mañana.png></center>'}).show();";
+    $dosx = "alertify.alert().set({'startMaximized':true, 'message':'<center><img height=400 src=images/schedule/Tarde.png></center>'}).show();";
 ?>
 
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
+    <script src="dist/js/alertify.js"></script>
+    <link rel="stylesheet" href="dist/css/alertify.css" />
+    <link rel="stylesheet" href="dist/css/themes/semantic.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Materias">
@@ -53,6 +59,17 @@
 </g></svg>
             </a>
           </div>
+          <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
 </li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
@@ -74,7 +91,7 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9c4b">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Materias</h1>
-        <p class="u-text u-text-2">Aquí encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.&nbsp;</p>
+        <p class="u-text u-text-2">Aquí encontraras todas las ayudas otorgadas por profesores y alumnos para desarrollarse de la mejor manera a lo largo del año.<br>Horarios: <a onclick="<?php echo $unox; ?>">Mañana</a> <a onclick="<?php echo $dosx; ?>">Tarde</a>&nbsp;</p><br>
         <a class="u-text u-text-1" href="buscador.php"> Ir al buscador </a>
       </div>
     </section>
@@ -172,26 +189,8 @@
                   </div>
                   <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-10">
                     <div class="u-container-layout u-valign-bottom u-container-layout-10">
-                      <h3 class="u-text u-text-default u-text-10"></h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-10">Ir<br>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="u-size-20">
-                <div class="u-layout-row">
-                  <div class="u-container-style u-grey-10 u-layout-cell u-size-30 u-layout-cell-11">
-                    <div class="u-container-layout u-valign-top u-container-layout-11">
-                      <h3 class="u-text u-text-default u-text-11"></h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-11">Ir<br>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="u-container-style u-grey-5 u-layout-cell u-size-30 u-layout-cell-12">
-                    <div class="u-container-layout u-valign-top u-container-layout-12">
-                      <h3 class="u-text u-text-default u-text-12"></h3>
-                      <a href="https://nicepage.com/wordpress-themes" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-12">Ir<br>
+                      <h3 class="u-text u-text-default u-text-10">Laboratorio</h3>
+                      <a href="materia.php?mt=laboratorio" class="u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-hover-white u-btn-10">Ir<br>
                       </a>
                     </div>
                   </div>

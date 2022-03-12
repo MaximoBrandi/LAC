@@ -4,11 +4,11 @@
     include_once "functions/conexion.php";
     checkSession(0);
 
-    $result = consulta($mysqli, "SELECT uno FROM Usuarios WHERE id = ".$_SESSION["Login"]);
+    $result = consulta($mysqli, "SELECT uno FROM Usuarios WHERE id = ".$_GET["id"]);
     $rowx = mysqli_fetch_assoc($result);
-    $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$_SESSION["Login"]); $wor = mysqli_fetch_assoc($wor);
+    $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$_GET["id"]); $wor = mysqli_fetch_assoc($wor);
 
-    $sql = "SELECT * FROM Usuarios WHERE id =". $_SESSION["Login"];
+    $sql = "SELECT * FROM Usuarios WHERE id =". $_GET["id"];
     $result = consulta($mysqli, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -95,9 +95,20 @@
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-9ec7">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Comentarios</h1>
-        <p class="u-text u-text-2">Aquí puedes ver tus comentarios</p>
+        <p class="u-text u-text-2"><?php if($_GET["id"] == $_SESSION["Login"]){echo "Aquí puedes ver tus comentarios";}else{ echo "Aquí puedes ver los comentarios de ".base64_decode($row["uno"]);} ?></p>
       </div>
     </section>
+    <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
     <section class="u-clearfix u-section-4" id="sec-9eb5">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
@@ -107,12 +118,13 @@
             $result = consulta($mysqli, $sql);
             if ($result->num_rows > 0) {
               while($rowz = $result->fetch_assoc()) {
+                if ($_GET["id"] == $_SESSION["Login"]) {
+                  $eliminar = "<a class='u-text u-text-grey-50 u-text-4' href='comentarios.php?del=".$rowz["id"]."'>Eliminar comentario</a>";}
                 echo "<div class='u-container-style u-group u-group-2'>
                 <div class='u-container-layout'>
                   <p class='u-text u-text-2'> ".base64_decode($rowz["dos"])."</p>
                   <img class=' u-image u-image-circle u-preserve-proportions u-image-1' alt='' src='".base64_decode($wor["dos"])."' data-image-width='64' data-image-height='64'>
-                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($rowz["cuatro"])."</h6>
-                  <a class='u-text u-text-grey-50 u-text-4' href='comentarios.php?del=".$rowz["id"]."'>Eliminar comentario</a>
+                  <h6 class='u-text u-text-grey-50 u-text-3'>".base64_decode($rowz["cuatro"])."</h6>". $eliminar."
                 </div>
               </div>";
               }

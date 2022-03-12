@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Cursos, Desarrollo web">
@@ -40,7 +41,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="Inicio.html" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
@@ -54,16 +55,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Inicio.html" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Registrase.html" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Inicio.html" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Registrase.html" style="padding: 10px 0px;">Registrarse / Iniciar sesion</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -71,10 +72,21 @@
           </div>
         </nav>
       </div></header>
+      <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-187c">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Cursos</h1>
-        <p class="u-text u-text-2">Utiliza y aporta materiales de ayuda y cursos para las materias del curso en el actual año 2022<br>Utiliza el calendario de tareas y examenes para organizarte sin perderle pista a nada.
+        <p class="u-text u-text-2">Aqui puedes ver y subir cursos que podrian de ser de utilidad para la cursada o los alumnos en general.
         </p>
       </div>
     </section>
@@ -85,11 +97,11 @@
           <div class="u-repeater u-repeater-1"><!--blog_post-->
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-1">
-                <h1 class="u-text u-text-1">Desarrollo web</h1>
-                <a class="u-post-header-link" href="blog/enviar-5.html"><!--blog_post_image-->
-                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1"><!--/blog_post_image-->
+                <h1 class="u-text u-text-1">Programacion Web</h1>
+                <a class="u-post-header-link"><!--blog_post_image-->
+                  <img src="https://www.santander.com.ar/banco/wcm/connect/315ec26c-6d01-440b-b25e-c9f4ccf77a99/digitalhouse_santander.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE-315ec26c-6d01-440b-b25e-c9f4ccf77a99-mO78Np3" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1"><!--/blog_post_image-->
                 </a>
-                <p class="u-text u-text-2">Cursos de aprender programando sobre desarrollo web, bloques 1,2,3 y 4<br>
+                <p class="u-text u-text-2">Curso de Santander y Formar, inscripcion por telefono<br> 11 2816-1980<br>
                   <br>
                   <br>
                 </p>
@@ -97,49 +109,49 @@
             </div><!--/blog_post--><!--blog_post-->
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-2">
-                <h1 class="u-text u-text-3">Titular de muestra</h1>
-                <a class="u-post-header-link" href="blog/enviar-4.html"><!--blog_post_image-->
-                  <img src="images/5.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-2"><!--/blog_post_image-->
+                <h1 class="u-text u-text-3">Aprendé Programando</h1>
+                <a class="" href="https://docs.google.com/forms/d/e/1FAIpQLScCA8cTxpgvuA_VXDGyUBES6tHFyNQvik7vdnAzi3jLAN5Clw/viewform"><!--blog_post_image-->
+                  <img src="https://aprendeprogramando.virtual.bue.edu.ar/pluginfile.php/1/theme_moove/logo/1646743692/APV_logo2.png" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-2"><!--/blog_post_image-->
                 </a>
-                <p class="u-text u-text-4">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+                <p class="u-text u-text-4">Cursos de aprendé programando, comienzan en Abril.</p>
               </div>
-            </div><!--/blog_post--><!--blog_post-->
+            <!--/</div>/blog_postblog_post
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-3">
                 <h1 class="u-text u-text-5">Titular de muestra</h1>
-                <a class="u-post-header-link" href="blog/enviar-3.html"><!--blog_post_image-->
-                  <img src="images/6.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-3"><!--/blog_post_image-->
+                <a class="u-post-header-link">
+                  <img src="images/6.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-3"><!--/blog_post_image
                 </a>
                 <p class="u-text u-text-6">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
               </div>
-            </div><!--/blog_post--><!--blog_post-->
+            </div><blog_postblog_post
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-4">
                 <h1 class="u-text u-text-7">Titular de muestra</h1>
-                <a class="u-post-header-link" href="blog/enviar-2.html"><!--blog_post_image-->
-                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-4"><!--/blog_post_image-->
+                <a class="u-post-header-link">
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-4">
                 </a>
                 <p class="u-text u-text-8">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
               </div>
-            </div><!--/blog_post--><!--blog_post-->
+            </div>
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-5">
                 <h1 class="u-text u-text-9">Titular de muestra</h1>
-                <a class="u-post-header-link" href="blog/enviar-1.html"><!--blog_post_image-->
-                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-5"><!--/blog_post_image-->
+                <a class="u-post-header-link">
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-5">
                 </a>
                 <p class="u-text u-text-10">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
               </div>
-            </div><!--/blog_post--><!--blog_post-->
+            </div>
             <div class="u-blog-post u-container-style u-repeater-item">
               <div class="u-container-layout u-similar-container u-container-layout-6">
                 <h1 class="u-text u-text-11">Titular de muestra</h1>
-                <a class="u-post-header-link" href="blog/enviar.html"><!--blog_post_image-->
-                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-6"><!--/blog_post_image-->
+                <a class="u-post-header-link">
+                  <img src="images/4.jpeg" alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-6">
                 </a>
                 <p class="u-text u-text-12">Texto de ejemplo. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
               </div>
-            </div><!--/blog_post-->
+            </div>blog_post-->
           </div>
           <div class="u-list-control"></div>
         </div><!--/blog-->
