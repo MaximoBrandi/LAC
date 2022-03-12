@@ -16,6 +16,7 @@
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Buscador">
@@ -77,6 +78,17 @@
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
+              <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
             </div>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>

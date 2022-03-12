@@ -13,6 +13,7 @@ if (isset($_POST["name"])) {
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <script src="dist/js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-os'</script>
     <link rel="stylesheet" href="dist/css/vex.css" />
@@ -81,6 +82,11 @@ if (isset($_POST["name"])) {
           </div>
         </nav>
       </div></header>
+            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-5ba3">
       <div class="u-clearfix u-sheet u-sheet-1">
         <?php 

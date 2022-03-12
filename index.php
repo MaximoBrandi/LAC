@@ -5,6 +5,13 @@ error_reporting(0);
 $result = consulta($mysqli, "SELECT id FROM Archivos WHERE once IS NULL");
 $rows = mysqli_num_rows($result);
 
+if (!isset($_SESSION["theme"])) {
+  setcookie("theme", "black", time()+3600);
+}
+if (isset($_GET["bk"])) {
+  setcookie("theme", $_GET["bk"], time()+3600);
+}
+
 $result = consulta($mysqli, "SELECT id FROM Usuarios WHERE siete IS NULL");
 $rows2 = mysqli_num_rows($result);
 
@@ -13,7 +20,6 @@ $colaboradores = mysqli_num_rows($result);
 
 $rows5 = "";
 session_start();
-
 
 $remplazar = array('Mon' => 'Lunes', 'Tue' => 'Martes', 'Wed' => 'Miercoles', 'Thu' => 'Jueves', 'Fri' => 'Viernes');
 
@@ -41,6 +47,7 @@ $wos = "images/schedule/".$xz."-t.png";
 
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
@@ -53,7 +60,7 @@ $wos = "images/schedule/".$xz."-t.png";
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Inicio</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="inicio.css" media="screen">
+    <link rel="stylesheet" href="inicio.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.5.4, nicepage.com">
@@ -90,6 +97,24 @@ $wos = "images/schedule/".$xz."-t.png";
               <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
 </g></svg>
             </a>
+            <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            } else if (!isset($_SESSION["theme"])) {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
+
           </div>
           <div class="u-custom-menu u-nav-container">
             <?php
@@ -127,6 +152,49 @@ $wos = "images/schedule/".$xz."-t.png";
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-bf0d">
+    <h1 class="u-text u-text-default u-text-1">Ultimas publicaciones</h1>
+    <div class="u-layout-horizontal u-list u-list-2">
+        <div class="u-repeater u-repeater-2">
+        <?php  
+            $result = consulta($mysqli, "SELECT * FROM Archivos WHERE id > (SELECT COUNT(*) FROM Archivos) - 5");
+            if ($result->num_rows > 0) {
+              while($rowqx = $result->fetch_assoc()) {
+                echo "<div class='u-align-center u-container-style u-custom-item u-list-item u-repeater-item'>
+                <div class='u-container-layout u-similar-container u-valign-middle u-container-layout-5'>
+                  <h2 class='u-subtitle u-text u-text-default u-text-14'>".base64_decode($rowqx["siete"])."</h2>
+                  <center><img width='256' height='256' src='".base64_decode($rowqx["seis"])."' alt='lol'></center>
+                  <a href='material.php?id=".$rowqx["id"]."' data-page-id='102623523' class='u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-1'>Ir</a>
+                </div>
+              </div>";
+              }
+            }
+            ?>
+        </div>
+        <a class="u-absolute-vcenter-lg u-absolute-vcenter-md u-absolute-vcenter-sm u-absolute-vcenter-xl u-gallery-nav u-gallery-nav-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-1" href="#" role="button">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+        c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+        c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+        c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+        c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+          </span>
+        </a>
+        <a class="u-absolute-vcenter-lg u-absolute-vcenter-xl u-gallery-nav u-gallery-nav-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-2" href="#" role="button">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+        L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+        c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+          <span class="sr-only">
+            <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+        L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+        c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+          </span>
+        </a>
+      </div>
       <div class="u-expanded-width u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-center u-container-style u-list-item u-repeater-item">
@@ -182,32 +250,28 @@ $wos = "images/schedule/".$xz."-t.png";
         <a class="u-absolute-vcenter-lg u-absolute-vcenter-md u-absolute-vcenter-sm u-absolute-vcenter-xl u-gallery-nav u-gallery-nav-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-1" href="#" role="button">
           <span aria-hidden="true">
             <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+        c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+        c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
           </span>
           <span class="sr-only">
             <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+        c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+        c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
           </span>
         </a>
         <a class="u-absolute-vcenter-lg u-absolute-vcenter-xl u-gallery-nav u-gallery-nav-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-2" href="#" role="button">
           <span aria-hidden="true">
             <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+        L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+        c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
           </span>
           <span class="sr-only">
             <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+        L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+        c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
           </span>
         </a>
       </div>
-      
-      
-      
-      
     </section>
     
     
@@ -217,7 +281,7 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
         </a>
         <div>
         <p class="u-align-center u-social-icons-1">
-            ver0.4-3b
+            ver0.4
           </p>
           <a target="_blank" href="https://docs.google.com/document/d/1KNlCQGzTXXfai6aKiVD7kUM_jsNogXfUrbiv8hlODYk" class="u-align-center u-social-icons-1">
             Creditos y postularse
@@ -232,6 +296,8 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 	"></path></svg></span>
           </a>
         </div>
-      </div></footer>
+      </div>
+      <script src="bttn.js"></script></footer>
+      
   </body>
 </html>

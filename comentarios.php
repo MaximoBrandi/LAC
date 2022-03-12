@@ -98,6 +98,17 @@
         <p class="u-text u-text-2"><?php if($_GET["id"] == $_SESSION["Login"]){echo "Aquí puedes ver tus comentarios";}else{ echo "Aquí puedes ver los comentarios de ".base64_decode($row["uno"]);} ?></p>
       </div>
     </section>
+    <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
     <section class="u-clearfix u-section-4" id="sec-9eb5">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">

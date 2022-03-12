@@ -15,6 +15,7 @@ function login($email, $password){
     if (md5($contrasena) == base64_decode($row["dos"])) {
       session_start();
       $_SESSION["Login"] = $row["id"];
+      $_SESSION["Login"] = $row["id"];
       header('Location: index.php');
     }else{
       header('Location: iniciar-sesion.php?al=1');
@@ -31,15 +32,19 @@ function register($post) {
   $row = mysqli_fetch_assoc($consulta);
   $consulta = consulta($mysqliroot, "SELECT * FROM verification WHERE uno='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
   $row2 = mysqli_fetch_assoc($consulta);
+  if (!isset($post["theme"])) {
+    $post["theme"] = "white";
+  }
   if (!isset($row["uno"]) && isset($row2["uno"]) && !isset($row2["tres"]) || isset($row["siete"]) && isset($row2["uno"]) && !isset($row2["tres"]))  {
-      $consulta = consulta($mysqli, "INSERT INTO Usuarios VALUES (NULL , '" .base64_encode($post["name"]). "', '" .base64_encode(md5($post["password"])). "', '".base64_encode($post["email"])."', '".base64_encode($post["curso"])."', '".$row2["cuatro"]."', '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, NULL)");
-      $lol = "INSERT INTO Perfil VALUES (NULL , '". $mysqli->real_escape_string(base64_encode($post["email"])) ."', '".base64_encode("images/11.svg")."', NULL, NULL, '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, '".base64_encode("0/0")."', NULL)";
+      $consulta = consulta($mysqli, "INSERT INTO Usuarios (id, uno, dos, tres, cuatro, cinco, seis, siete, ocho) VALUES (NULL , '" .base64_encode($post["name"]). "', '" .base64_encode(md5($post["password"])). "', '".base64_encode($post["email"])."', '".base64_encode($post["curso"])."', '".$row2["cuatro"]."', '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, NULL)");
+      $lol = "INSERT INTO Perfil (id, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve) VALUES (NULL , '". $mysqli->real_escape_string(base64_encode($post["email"])) ."', '".base64_encode("images/11.svg")."', NULL, NULL, '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, '".base64_encode("0/0")."', '".$post["theme"]."', NULL)";
       $consulta = consulta($mysqli, $lol);
       $consulta = consulta($mysqliroot, "UPDATE verification SET tres = '" . base64_encode($post["name"]). "' WHERE uno ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
       $consulta = consulta($mysqli, "SELECT MAX(`id`) FROM `Usuarios`");
       $rowzx = mysqli_fetch_assoc($consulta);
       session_start();
       $_SESSION["Login"] = $rowzx["MAX(`id`)"];
+      $_SESSION["theme"] = $post["theme"];
       return "true";
   }else{
       return "false";

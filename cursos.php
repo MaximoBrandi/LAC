@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="LAC, Cursos, Desarrollo web">
@@ -71,6 +72,17 @@
           </div>
         </nav>
       </div></header>
+      <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
     <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-187c">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h1 class="u-text u-text-default u-text-1">Cursos</h1>

@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
     <link rel="stylesheet" href="dist/css/themes/semantic.css" />
@@ -59,8 +60,20 @@
         if ($state == 1) {
           echo "<script>alertify.notify('Agregado correctamente al calendario', 'success', 5, function(){  console.log('dismissed'); }).dismissOthers()</script>";
         }
+        
 
         ?>
+                    <?php 
+            
+            if ($_SESSION["theme"] == "black") {
+              echo "            <script>DarkReader.enable({
+                brightness: 100,
+                contrast: 90,
+                sepia: 10
+            });</script>";
+            }
+            
+            ?>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
             <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
