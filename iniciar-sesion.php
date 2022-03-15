@@ -146,16 +146,5 @@ if (isset($_POST["name"])) {
           </a>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
-        <span>Free HTML Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Offline Website Builder</span>
-      </a>. 
-    </section>
   </body>
 </html>
