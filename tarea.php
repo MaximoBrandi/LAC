@@ -81,7 +81,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <?php 
@@ -106,16 +106,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -171,7 +171,7 @@
           <div class='u-container-layout u-similar-container u-valign-middle u-container-layout-5'>
             <h2 class='u-subtitle u-text u-text-default u-text-14'>".base64_decode($rowqt["siete"])."</h2>
             <center><img width='256' height='256' src='".base64_decode($rowqt["seis"])."' alt='lol'></center>
-            <a href='material.php?id=".$rowqt["id"]."' data-page-id='102623523' class='u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-1'>Ir</a>
+            <a href='material?id=".$rowqt["id"]."' data-page-id='102623523' class='u-border-2 u-border-black u-btn u-button-style u-hover-black u-hover-feature u-none u-text-black u-text-hover-white u-btn-1'>Ir</a>
           </div>
         </div>";
         }
@@ -207,7 +207,7 @@
 
             if (isset($_SESSION["Login"])) {
               echo '            <div class="u-form u-form-1">
-              <form action="material.php?id='.$_GET["id"].'" method="POST" class="u-form-spacing-15" style="padding: 15px">
+              <form action="material?id='.$_GET["id"].'" method="POST" class="u-form-spacing-15" style="padding: 15px">
                 <div class="u-form-group u-form-textarea u-label-top u-form-group-1">
                   <label for="textarea-f987" class="u-label">Comentario</label>
                   <textarea rows="1" cols="50" id="textarea-f987" name="comentario" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="" maxlength="255"></textarea>
@@ -241,16 +241,6 @@
           </a>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+
   </body>
 </html>

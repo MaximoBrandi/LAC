@@ -39,7 +39,7 @@ $row = mysqli_fetch_assoc($result);
                 <h3 class="title dd-handle" >'.$row["uno"].' Materia: '.$row["dos"].'<i class=" material-icons ">filter_none</i></h3>
                   <div class="text" contenteditable="true">'.$row["cuatro"].' <br> Fecha de entrega: '.$row["tres"].'<br>
                   </div>
-                  <a target="_blank" href=../../tarea.php?id="'.$row["id"].'">Link de la tarea</a>
+                  <a target="_blank" href=../../tarea?id="'.$row["id"].'">Link de la tarea</a>
               </li>';
               }
             } else {

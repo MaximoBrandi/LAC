@@ -52,7 +52,7 @@ if (isset($_POST["name"])) {
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
@@ -81,16 +81,16 @@ if (isset($_POST["name"])) {
                 sepia: 10
             });</script>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="registrase" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase.php" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="registrase" style="padding: 10px 0px;">Registrarse / Iniciar sesión</a>
 </li></ul>
               </div>
             </div>
@@ -108,10 +108,10 @@ if (isset($_POST["name"])) {
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-1">Registrate<br>
         </h2>
-        <a href="iniciar-sesion.php" data-page-id="714603816" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Inicia sesión<br>
+        <a href="iniciar-sesion" data-page-id="714603816" class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-hover-palette-2-base u-border-palette-1-base u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1">o Inicia sesión<br>
         </a>
         <div class="u-form u-form-1">
-          <form action="registrase.php" method="POST" class="u-form-spacing-10" name="formm" style="padding: 10px;">
+          <form action="registrase" method="POST" class="u-form-spacing-10" name="formm" style="padding: 10px;">
             <div class="u-form-group u-form-name">
               <label for="name-1081" class="u-label">Nombre y Apellido</label>
               <input type="text" placeholder="Introduzca su nombre" id="name-1081" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
@@ -274,16 +274,6 @@ if (isset($_POST["name"])) {
           </a>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+
   </body>
 </html>

@@ -22,14 +22,14 @@
       $sql = "UPDATE Usuarios SET siete ='DAE' WHERE id =".$_SESSION["Login"];
       consulta($mysqli, $sql);
       unset($_SESSION["Login"]);
-      header('Location: index.php');
+      header('Location: index');
     }
 
     //Close session system
 
     if (isset($_GET["clss"])) {
       unset($_SESSION["Login"]);
-      header('Location: index.php');
+      header('Location: index');
     }
 
     //Password change system
@@ -100,7 +100,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
@@ -114,16 +114,16 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -179,7 +179,7 @@
                         $count = 1;
                         while($rowt = $result->fetch_assoc()) {
                           echo "
-                          <div class='u-effect-fade u-gallery-item u-gallery-item-".$count."' data-href='material.php?id=".$rowt["id"]."' data-image-width='256' data-image-height='256'>
+                          <div class='u-effect-fade u-gallery-item u-gallery-item-".$count."' data-href='material?id=".$rowt["id"]."' data-image-width='256' data-image-height='256'>
                           <div class='u-back-slide'>
                             <img class='u-back-image u-expanded' src='".base64_decode($rowt["seis"])."'>
                           </div>
@@ -202,7 +202,7 @@
                   </div>
                   <h4 class="u-align-center u-text u-text-default u-text-2">
                     <?php if ($row2["tres"] != NULL) {
-                      echo "<a class='u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1' href='buscar.php?fav=".base64_encode($_SESSION["Login"])."'>Ver mas</a>";
+                      echo "<a class='u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1' href='buscar?fav=".base64_encode($_SESSION["Login"])."'>Ver mas</a>";
                     } ?>
                   </h4>
                 </div>
@@ -234,7 +234,7 @@
                   ?>
                   </div>
                   <h4 class="u-align-center u-text u-text-default u-text-7">
-                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="comentarios.php?id=<?php echo $_SESSION["Login"]; ?>">Ver mas</a>
+                    <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="comentarios?id=<?php echo $_SESSION["Login"]; ?>">Ver mas</a>
                   </h4>
                 </div>
               </div>
@@ -283,7 +283,7 @@
             </div>
             <div class="u-container-style u-list-item u-repeater-item">
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
-                <a href="subir.php" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-6" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Agregar<br>archivos
+                <a href="subir" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-6" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">Agregar<br>archivos
                 </a>
               </div>
             </div>
@@ -311,16 +311,6 @@
           </a>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+
   </body>
 </html>

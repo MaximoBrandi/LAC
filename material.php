@@ -153,7 +153,7 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode"><header class="u-clearfix u-grey-10 u-header u-header" id="sec-926c"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="index.php" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
+        <a href="index" data-page-id="845102490" class="u-image u-logo u-image-1" data-image-width="699" data-image-height="700" title="Inicio">
           <img src="images/LogoTransMed.png" class="u-logo-image u-logo-image-1">
         </a>
         <h1 class="u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xl u-text-1">LAC<br>
@@ -191,18 +191,18 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
             
             ?>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia.php?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index.php" style="padding: 10px 0px;">Inicio</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil.php" style="padding: 10px 0px;">Perfil</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="materia?mt=<?php echo $rowpw["seis"]; ?>" style="padding: 10px 0px;">Materia</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="index" style="padding: 10px 0px;">Inicio</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="perfil" style="padding: 10px 0px;">Perfil</a>
 </li></ul>
               </div>
             </div>
@@ -228,11 +228,11 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
               <a class="u-post-header-link" href="blog/enviar-5.html"><!--blog_post_header_content--><?php echo base64_decode($row["siete"]) ?><!--/blog_post_header_content--></a>
             </h2><!--/blog_post_header--><!--blog_post_metadata-->
             <div class="u-blog-control u-metadata u-text-grey-50 u-metadata-1"><!--blog_post_metadata_author-->
-              <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><a style="color:black;" href="perfil-otro.php?id=<?php echo $row5["id"]; ?>"> <?php echo base64_decode($row["cuatro"]) ?></a><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
+              <span class="u-meta-author u-meta-icon"><!--blog_post_metadata_author_content--><a style="color:black;" href="perfil-otro?id=<?php echo $row5["id"]; ?>"> <?php echo base64_decode($row["cuatro"]) ?></a><!--/blog_post_metadata_author_content--></span><!--/blog_post_metadata_author--><!--blog_post_metadata_date-->
               <span class="u-meta-date u-meta-icon"><!--blog_post_metadata_date_content--><?php echo base64_decode($row["dies"]) ?><!--/blog_post_metadata_date_content--></span><!--/blog_post_metadata_date--><!--blog_post_metadata_category-->
-              <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='buscar.php?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
+              <span class="u-meta-category u-meta-icon"><!--blog_post_metadata_category_content--><?php $rowes = explode( '/', $row["nueve"]); for($i = 0, $size = count($rowes); $i < $size; ++$i) { echo "<a href='buscar?tag=".base64_encode($rowes[$i])."'> ".$rowes[$i]." </a>";}?><!--/blog_post_metadata_category_content--></span><!--/blog_post_metadata_category--><!--blog_post_metadata_comments-->
               <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comentarios (<?php echo mysqli_num_rows($resultx) ?>)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->
-              <?php if ($row["cuatro"] == $row2["uno"]) {echo "<span data-href='editar.php?id=".$_GET["id"]."' class='u-meta-edit u-meta-icon'><!--blog_post_metadata_edit_content-->Edit<!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->";} ?>
+              <?php if ($row["cuatro"] == $row2["uno"]) {echo "<span data-href='editar?id=".$_GET["id"]."' class='u-meta-edit u-meta-icon'><!--blog_post_metadata_edit_content-->Edit<!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->";} ?>
             </div><!--/blog_post_metadata--><!--blog_post_content-->
             <div class="u-align-justify u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content--><?php echo base64_decode($row["ocho"]) ?><!--/blog_post_content_content--></div><!--/blog_post_content-->
           </div>
@@ -240,11 +240,11 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-container-style u-list-item u-repeater-item u-list-item-1">
-              <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-xl u-container-layout-2"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" data-href="material.php?id=<?php echo $_GET["id"] ?>&li=1"><img src="images/13.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-xl u-container-layout-2"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" data-href="material?id=<?php echo $_GET["id"] ?>&li=1"><img src="images/13.png" alt=""></span>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-2">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-2" data-href="material.php?id=<?php echo $_GET["id"] ?>&li=2"><img src="images/14.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-2" data-href="material?id=<?php echo $_GET["id"] ?>&li=2"><img src="images/14.png" alt=""></span>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-3">
@@ -257,14 +257,14 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
               <div class="share-options">
                         <p class="title">Compartir</p>
                         <div class="link-container">
-                            <textarea class="link js-copytextarea">https://lac-lyp.000webhostapp.com/material.php?id=<?php echo $_GET["id"]?></textarea>
+                            <textarea class="link js-copytextarea">https://lac-lyp.com.ar/material?id=<?php echo $_GET["id"]?></textarea>
                             <button class="copy-btn">Copiado!</button>
                         </div>
               </div>
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-4">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" <?php if($pos === false){ echo 'data-href="material.php?id='.$_GET["id"].'&fv=1'; }?>><img src="images/star.png" alt=""></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" <?php if($pos === false){ echo 'data-href="material?id='.$_GET["id"].'&fv=1'; }?>><img src="images/star.png" alt=""></span>
               </div>
             </div>
           </div>
@@ -299,7 +299,7 @@ $pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe wi
 
             if (isset($_SESSION["Login"])) {
               echo '<div class="u-form u-form-1">
-              <form action="material.php?id='.$_GET["id"].'" method="POST" class="u-form-spacing-15" style="padding: 15px">
+              <form action="material?id='.$_GET["id"].'" method="POST" class="u-form-spacing-15" style="padding: 15px">
                 <div class="u-form-group u-form-textarea u-label-top u-form-group-1">
                   <label for="textarea-f987" class="u-label">Comentario</label>
                   <textarea rows="1" cols="50" id="textarea-f987" name="comentario" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="" maxlength="255"></textarea>

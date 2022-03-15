@@ -6,7 +6,7 @@ function alertCloseSession(){
         message: '¿Estás seguro de que quieres eliminar esta cuenta? Esta acción es irreversible.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='perfil.php?delete=1'">Confirmar</button>`,
+            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='perfil?delete=1'">Confirmar</button>`,
             '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>'
         ].join(''),
         buttons: [],
@@ -20,7 +20,7 @@ function alertDeleteAccount(){
         message: '¿Estás seguro de que quieres cerrar sesión?.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='perfil.php?clss=1'">Confirmar</button>`,
+            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='perfil?clss=1'">Confirmar</button>`,
             '<button type="button" class="vex-dialog-button-secondary vex-dialog-button vex-last" onclick="vex.closeAll()">Cancelar</button>'
         ].join(''),
         buttons: [],
@@ -73,7 +73,7 @@ function alertSuccessfulUpload(id){
         message: 'Subida de archivo exitosa.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-secondary vex-dialog-button vex-first" onclick="window.location.href='material.php?id=${id}'">Confirmar</button>`
+            `<button type="submit" class="vex-dialog-button-secondary vex-dialog-button vex-first" onclick="window.location.href='material?id=${id}'">Confirmar</button>`
         ].join(''),
         buttons: [],
         callback: function (value) {
@@ -99,7 +99,7 @@ function alertSuccessfulEdit(id){
         message: 'Actualización de archivo exitosa.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-secondary vex-dialog-button vex-first" onclick="window.location.href='material.php?id=${id}'">Confirmar</button>`
+            `<button type="submit" class="vex-dialog-button-secondary vex-dialog-button vex-first" onclick="window.location.href='material?id=${id}'">Confirmar</button>`
         ].join(''),
         buttons: [],
         callback: function (value) {
@@ -138,7 +138,7 @@ function alertSuccessfulRegister(){
         message: 'Cuenta creada correctamente.',
         className: 'vex-theme-default',
         input: [
-            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='index.php'">Confirmar</button>`,
+            `<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first" onclick="window.location.href='index'">Confirmar</button>`,
         ].join(''),
         buttons: [],
         callback: function (value) {
@@ -163,7 +163,7 @@ function changeUserPic(){
     vex.dialog.open({
         className: 'vex-theme-default',
         input: [
-            '<form action="perfil.php" method="post">',
+            '<form action="perfil" method="post">',
             '<label><a href="https://postimages.org/" target="_blank">Sube tu imagen primero aqui (Direct link)</a></label>',
             '<input type="url" name="webIMG" placeholder="Inserte la url aqui" required />',
             '<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Guardar</button>','<button type="button" onclick="vex.closeAll()" class="vex-dialog-button-secondary vex-dialog-button vex-last">Cancelar</button>',
@@ -180,7 +180,7 @@ function alertChangePassword(){
         message: 'Completa los campos para cambiar la contraseña',
         className: 'vex-theme-default',
         input: [
-            '<form action="perfil.php" method="post" name="formChangePassword">',
+            '<form action="perfil" method="post" name="formChangePassword">',
                 '<input name="actu" type="password" class="inputChangePassword" placeholder="Contraseña actual" required />',
                 '<input name="nue1" type="password" class="inputChangePassword inputPasswordRegister" placeholder="Contraseña nueva" required />',
                 '<input name="nue2" type="password" class="inputChangePassword inputPasswordRegister" placeholder="Verifica contraseña nueva" required />',
