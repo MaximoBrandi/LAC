@@ -1,5 +1,5 @@
 <?php
-    error_reporting(0);
+    //error_reporting(0);
     $mysqli = new mysqli('bys90mwmlxp3h3btspjg-mysql.services.clever-cloud.com', 'u031mxblwmv6jste', 'TNxAJsElicGfsD5VPgyD', 'bys90mwmlxp3h3btspjg');
     $mysqliroot = new mysqli('b1mipyacpgyvckhdks8r-mysql.services.clever-cloud.com', 'uxzogkwa7ux7v3zo', 'AOSkfL3LobP25pP4Ef6T', 'b1mipyacpgyvckhdks8r');
   
@@ -47,6 +47,15 @@
         } else{
           return false;
         }
+    }
+
+    function translate( $str){
+      $transliteration = array('Monday' => 'Lunes','Tuesday' => 'Martes', 'Wednesday' => 'Miércoles', 'Thursday' => 'Jueves', 'Friday' => 'Viernes','Saturday' => 'Sabado','Sunday' => 'Domingo', 'monday' => 'lunes','tuesday' => 'martes', 'wednesday' => 'miércoles', 'thursday' => 'jueves', 'friday' => 'viernes','saturday' => 'sabado','sunday' => 'domingo',
+      'January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julío','August' => 'Agosto','September' => 'Septiembre','October' => 'Ocubre','November' => 'Noviembre','December' => 'Diciembre', 'january' => 'enero','february' => 'febrero','march' => 'marzo','april' => 'abril','may' => 'mayo','june' => 'junio','july' => 'julío','august' => 'agosto','september' => 'septiembre','october' => 'ocubre','november' => 'noviembre','december' => 'diciembre', 'January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julío','August' => 'Agosto','September' => 'Septiembre','October' => 'Ocubre','November' => 'Noviembre','th' => ' de'); 
+      $str = str_replace( array_keys( $transliteration ),
+      array_values( $transliteration ),
+      $str);
+return $str;
     }
 
     function unaccent( $str )

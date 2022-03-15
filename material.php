@@ -1,24 +1,19 @@
 <?php 
 error_reporting(0);
-include "functions/checkSession.php";
 include "functions/functions.php";
 include "functions/conexion.php";
 session_start();
 
-$sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
+$sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL AND seis = 'Material'";
 $resultx = consulta($mysqli, $sql);
 
-$result = consulta($mysqli, "SELECT * FROM Archivos WHERE id = ".$_GET["id"]);
+$result = consulta($mysqli, "SELECT dos, cuatro, cinco, seis, siete, ocho, nueve, dies FROM Archivos WHERE id = ".$_GET["id"]);
 $row = mysqli_fetch_assoc($result);
-
-$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE id = ".$_SESSION["Login"]);
-$row2 = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT seis FROM Materias WHERE seis = '".base64_decode($row["dos"])."'");
 $rowpw = mysqli_fetch_assoc($result);
 
-$result = consulta($mysqli, "SELECT * FROM Perfil WHERE id = ".$_SESSION["Login"]);
-$row3 = mysqli_fetch_assoc($result);
+
 
 $convert = array('#' => 'sharp');
 $reconvert = array('sharp' => '#');
@@ -28,9 +23,16 @@ $notify = 0;
 $dresz = "'".$_GET["id"]."'";
 $pos = strpos(base64_decode($row3["tres"]), $dresz);
 
-// Like sistem
+if (isset($_SESSION["Login"])) {
+  $result = consulta($mysqli, "SELECT tres FROM Perfil WHERE id = ".$_SESSION["Login"]);
+  $row3 = mysqli_fetch_assoc($result);
 
-$result = consulta($mysqli, "SELECT * FROM Usuarios WHERE uno ='".$row["cuatro"]."'");
+  $result = consulta($mysqli, "SELECT uno, tres, cuatro, ocho FROM Usuarios WHERE id = ".$_SESSION["Login"]);
+  $row2 = mysqli_fetch_assoc($result);
+
+  // Like sistem
+
+$result = consulta($mysqli, "SELECT id,tres FROM Usuarios WHERE uno ='".$row["cuatro"]."'");
 $row5 = mysqli_fetch_assoc($result);
 
 $result = consulta($mysqli, "SELECT siete FROM Perfil WHERE uno ='".$row5["tres"]."'");
@@ -70,13 +72,13 @@ if (isset($_GET["li"]) & $pos2 === false) {
 // Favorite System
 
 if(isset($_GET["fv"])){
-  $sql = "SELECT * FROM Perfil WHERE id =". $_SESSION["Login"];
+  $sql = "SELECT tres FROM Perfil WHERE id =". $_SESSION["Login"];
   $result = consulta($mysqli, $sql);
-  $row2 = mysqli_fetch_assoc($result);
+  $rowl = mysqli_fetch_assoc($result);
 
   $var = "'".$_GET["id"]."'";
-  $var2 = base64_decode($row2["tres"]).", '".$_GET["id"]."'";
-  if ($row2["tres"] == NULL) {
+  $var2 = base64_decode($rowl["tres"]).", '".$_GET["id"]."'";
+  if ($rowl["tres"] == NULL) {
       $sql = "UPDATE Perfil SET tres = '".base64_encode($var)."' WHERE id =". $_SESSION["Login"];
       $result = consulta($mysqli, $sql);
       $notify = 3;
@@ -89,7 +91,7 @@ if(isset($_GET["fv"])){
 
 // Comments system
 if (isset($_POST["comentario"])) {
-  $sql = "INSERT INTO Comentarios VALUES (NULL, '".$row2["uno"]."', '".base64_encode($_POST["comentario"])."', '".base64_encode($_GET["id"])."', '".base64_encode(date('l jS F Y h-i-s A'))."', NULL)";
+  $sql = "INSERT INTO Comentarios VALUES (NULL, '".$row2["uno"]."', '".base64_encode($_POST["comentario"])."', '".base64_encode($_GET["id"])."', '".base64_encode(date('l jS F Y h-i-s A'))."', NULL, 'Material')";
   $dou = consulta($mysqli, $sql);
   $notify = 4;
   $sql = "SELECT id FROM Comentarios WHERE uno = '".$row2["uno"]."'";
@@ -106,6 +108,8 @@ if (isset($_POST["comentario"])) {
       $result = consulta($mysqli, $sql);
   }
 }
+}
+$pharagrap = "alertify.alert().set({'startMaximized':true, 'message':'<iframe width=100% height=820  src=".base64_decode($row["cinco"])."/preview ></iframe>'}).show();";
 ?>
 
 <!DOCTYPE html>
@@ -219,7 +223,7 @@ if (isset($_POST["comentario"])) {
       <div class="u-clearfix u-sheet u-sheet-1"><!--post_details--><!--post_details_options_json--><!--{"source":""}--><!--/post_details_options_json--><!--blog_post-->
         <div class="u-container-style u-expanded-width u-post-details u-post-details-1">
           <div class="u-container-layout u-container-layout-1"><!--blog_post_image-->
-            <img alt="" class="u-blog-control u-expanded-width u-image u-image-default u-image-1" src="<?php echo base64_decode($row["seis"]) ?>"><!--/blog_post_image--><!--blog_post_header-->
+            <img onclick="<?php echo $pharagrap; ?>" alt="" class=" u-blog-control u-expanded-width u-image u-image-default u-image-1" src="<?php echo base64_decode($row["seis"]) ?>"><!--/blog_post_image--><!--blog_post_header-->
             <h2 class="u-blog-control u-text u-text-1">
               <a class="u-post-header-link" href="blog/enviar-5.html"><!--blog_post_header_content--><?php echo base64_decode($row["siete"]) ?><!--/blog_post_header_content--></a>
             </h2><!--/blog_post_header--><!--blog_post_metadata-->
@@ -245,10 +249,10 @@ if (isset($_POST["comentario"])) {
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-3">
               <div  class="u-container-layout share-btn  u-similar-container u-valign-top u-container-layout-4"><span class="u-custom-item u-hover-feature u-icon u-text-palette-1-base u-icon-3" ><svg class="fas fa-share-alt u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 59 59" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-92b3"></use></svg><svg class="u-svg-content" viewBox="0 0 59 59" x="0px" y="0px" id="svg-92b3" style="enable-background:new 0 0 59 59;"><path d="M47,39c-2.671,0-5.182,1.04-7.071,2.929c-0.524,0.524-0.975,1.1-1.365,1.709l-17.28-10.489
-	C21.741,32.005,22,30.761,22,29.456c0-1.305-0.259-2.549-0.715-3.693l17.284-10.409C40.345,18.142,43.456,20,47,20
-	c5.514,0,10-4.486,10-10S52.514,0,47,0S37,4.486,37,10c0,1.256,0.243,2.454,0.667,3.562L20.361,23.985
-	c-1.788-2.724-4.866-4.529-8.361-4.529c-5.514,0-10,4.486-10,10s4.486,10,10,10c3.495,0,6.572-1.805,8.36-4.529L37.664,45.43
-	C37.234,46.556,37,47.759,37,49c0,2.671,1.04,5.183,2.929,7.071C41.818,57.96,44.329,59,47,59s5.182-1.04,7.071-2.929
+                C21.741,32.005,22,30.761,22,29.456c0-1.305-0.259-2.549-0.715-3.693l17.284-10.409C40.345,18.142,43.456,20,47,20
+                c5.514,0,10-4.486,10-10S52.514,0,47,0S37,4.486,37,10c0,1.256,0.243,2.454,0.667,3.562L20.361,23.985
+                c-1.788-2.724-4.866-4.529-8.361-4.529c-5.514,0-10,4.486-10,10s4.486,10,10,10c3.495,0,6.572-1.805,8.36-4.529L37.664,45.43
+                C37.234,46.556,37,47.759,37,49c0,2.671,1.04,5.183,2.929,7.071C41.818,57.96,44.329,59,47,59s5.182-1.04,7.071-2.929
               C55.96,54.183,57,51.671,57,49s-1.04-5.183-2.929-7.071C52.182,40.04,49.671,39,47,39z"></path></svg></span>
               <div class="share-options">
                         <p class="title">Compartir</p>
@@ -260,10 +264,7 @@ if (isset($_POST["comentario"])) {
               </div>
             </div>
             <div class="u-container-style u-list-item u-repeater-item u-list-item-4">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-hover-feature u-icon u-text-palette-1-base u-icon-4" <?php if($pos === false){ echo 'data-href="material.php?id='.$_GET["id"].'&fv=1'; }?>><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-dd8e"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-dd8e" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
-	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
-	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
-	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5"><span class="u-custom-item u-file-icon u-hover-feature u-icon u-text-palette-1-base u-icon-1" <?php if($pos === false){ echo 'data-href="material.php?id='.$_GET["id"].'&fv=1'; }?>><img src="images/star.png" alt=""></span>
               </div>
             </div>
           </div>
@@ -279,10 +280,10 @@ if (isset($_POST["comentario"])) {
         <div class="u-container-style u-expanded-width u-grey-10 u-group u-group-1">
           <div class="u-container-layout u-valign-bottom u-container-layout-1">
             <?php 
-            $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL";
+            $sql = "SELECT * FROM Comentarios WHERE tres='".base64_encode($_GET["id"])."' AND cinco IS NULL AND seis = 'Material'";
             $resultx = consulta($mysqli, $sql);
             if ($resultx->num_rows > 0) {
-              while($rowz = $result->fetch_assoc()) {
+              while($rowz = $resultx->fetch_assoc()) {
                 $yat = consulta($mysqli, "SELECT id FROM Usuarios WHERE uno = '".$rowz["uno"]."'"); $yat = mysqli_fetch_assoc($yat); $wor = consulta($mysqli, "SELECT dos FROM Perfil WHERE id = ".$yat["id"]); $wor = mysqli_fetch_assoc($wor);
                 echo "<div class='u-container-style u-group u-group-2'>
                 <div class='u-container-layout'>
@@ -296,9 +297,9 @@ if (isset($_POST["comentario"])) {
               echo "0 results";
             }
 
-            ?>
-            <div class="u-form u-form-1">
-              <form action="material.php?id=<?php echo $_GET["id"] ?>" method="POST" class="u-form-spacing-15" style="padding: 15px">
+            if (isset($_SESSION["Login"])) {
+              echo '<div class="u-form u-form-1">
+              <form action="material.php?id='.$_GET["id"].'" method="POST" class="u-form-spacing-15" style="padding: 15px">
                 <div class="u-form-group u-form-textarea u-label-top u-form-group-1">
                   <label for="textarea-f987" class="u-label">Comentario</label>
                   <textarea rows="1" cols="50" id="textarea-f987" name="comentario" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="" maxlength="255"></textarea>
@@ -307,7 +308,11 @@ if (isset($_POST["comentario"])) {
                   <input type="submit" class="u-btn u-btn-submit u-button-style" value="Enviar" class="u-form-control-hidden">
                 </div>
               </form>
-            </div>
+            </div>';
+            }else{
+              echo "Registrate o inicia sesion para comentar";
+            }
+            ?>
           </div>
         </div>
       </div>
@@ -328,17 +333,6 @@ if (isset($_POST["comentario"])) {
           </a>
         </div>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
 
     <script src="app.js"></script>
   </body>

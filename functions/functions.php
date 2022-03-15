@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 
 function login($email, $password){
   include "conexion.php";
@@ -28,9 +28,9 @@ function login($email, $password){
 function register($post) {
   include "conexion.php";
 
-  $consulta = consulta($mysqli, "SELECT * FROM Usuarios WHERE tres='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
+  $consulta = consulta($mysqli, "SELECT uno, siete  FROM Usuarios WHERE tres ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
   $row = mysqli_fetch_assoc($consulta);
-  $consulta = consulta($mysqliroot, "SELECT * FROM verification WHERE uno='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
+  $consulta = consulta($mysqliroot, "SELECT uno, tres FROM verification WHERE uno='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
   $row2 = mysqli_fetch_assoc($consulta);
   if (!isset($post["theme"])) {
     $post["theme"] = "white";

@@ -1,11 +1,9 @@
 <?php 
     error_reporting(0);
-    include "functions/checkSession.php";
     include_once "functions/conexion.php";
-    checkSession(0);
     $state = 0;
     if (isset($_POST["name"])) {
-      $sql = "INSERT INTO Calendario VALUES (NULL, '".$mysqli->real_escape_string($_POST["fecha"])." 15:46:06', '".$mysqli->real_escape_string($_POST["fecha"])." 00:08:30', '".$mysqli->real_escape_string($_POST["name"])."', '".$mysqli->real_escape_string($_POST["desc"]).".')";
+      $sql = "INSERT INTO Calendario VALUES (NULL, '".$mysqli->real_escape_string($_POST["fecha"])." 00:00:00', '".$mysqli->real_escape_string($_POST["fecha"])." 00:00:00', '".$mysqli->real_escape_string($_POST["name"])."', '".$mysqli->real_escape_string($_POST["desc"]).".')";
       $ryad = consulta($mysqli, $sql);
       $state = 1;
     }
