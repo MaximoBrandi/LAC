@@ -31,9 +31,9 @@ Released: 2020-06-12
 header('Content-Type: application/json');
 
 error_reporting(0);
-include("config.php");
+include("../../functions/conexion.php");
 
-$sql = "SELECT * FROM ".$SETTINGS["data_table"]." WHERE UNIX_TIMESTAMP(`start`) >=".strtotime($mysqli->real_escape_string($_GET['start']))." AND UNIX_TIMESTAMP(`start`)<=".strtotime($mysqli->real_escape_string($_GET['end']));
+$sql = "SELECT * FROM Calendario WHERE UNIX_TIMESTAMP(`start`) >=".strtotime($mysqli->real_escape_string($_GET['start']))." AND UNIX_TIMESTAMP(`start`)<=".strtotime($mysqli->real_escape_string($_GET['end']));
 $arr = array();
 if ($result = $mysqli->query($sql)) {
     $counter = 0;

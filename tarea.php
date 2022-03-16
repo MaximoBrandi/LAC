@@ -12,6 +12,8 @@
     $row2 = mysqli_fetch_assoc($result);
 
     session_start();
+    $rowperfil = mysqli_fetch_assoc(consulta($mysqli, "SELECT dies FROM Perfil WHERE id =".$_SESSION["Login"]));
+
 
     //sistema de comentarios
     if (isset($_SESSION["Login"])) {
@@ -36,12 +38,40 @@
             $result = consulta($mysqli, $sql);
         }
       }
+
+      $result = consulta($mysqli, "SELECT nueve FROM Tareas WHERE nueve LIKE '%<".$_SESSION["Login"].">%' AND id =". $_GET["id"]);
+      $row9 = mysqli_fetch_assoc($result);
+
+      if (isset($_POST["set"])) {
+        if (!isset($row9["nueve"])) {
+          if (isset($_POST["nota"]) || $_POST["nota"] !== "") {
+            $klp = $rowperfil["dies"].'<'.$_GET["id"].'>='.$_POST["nota"].'-';
+            $sql = "UPDATE Perfil SET dies = '".$klp."' WHERE id =".$_SESSION["Login"];
+            $result = consulta($mysqli, $sql);
+          }
+          $stringy = $row["nueve"] . "<".$_SESSION["Login"].">-";
+          $sql = "UPDATE Tareas SET nueve = '".$stringy."' WHERE id =".$_GET["id"];
+          $result = consulta($mysqli, $sql);
+        }
+      }
+      $owo = "<".$_GET["id"].">";
+      $result = consulta($mysqli, "SELECT dies FROM Perfil WHERE id =".$_SESSION["Login"]." AND dies LIKE '%".$owo."%'");
+      $row7 = mysqli_fetch_assoc($result);
+      if(isset($row7)){
+        $lol = explode("-",$row7["dies"]);
+        $matches = customSearch($owo, $lol);
+      }
     }
     $pharagrapy = "alertify.alert().set({'startMaximized':true, 'message':'<iframe width=100% height=820  src=".$row["cinco"]." ></iframe>'}).show();";
 ?>
 
 <html style="font-size: 13px;" lang="es-AR">
   <head>
+  <script src="dist/js/vex.combined.min.js"></script>
+  <script>vex.defaultOptions.className = 'vex-theme-os'</script>
+    <link rel="stylesheet" href="dist/css/vex.css" />
+    <link rel="stylesheet" href="dist/css/vex-theme-default.css" />
+    <script src="dist/js/vex.comands.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.46/darkreader.min.js"></script>
     <script src="dist/js/alertify.js"></script>
     <link rel="stylesheet" href="dist/css/alertify.css" />
@@ -147,13 +177,15 @@
               <span class="u-meta-comments u-meta-icon"><!--blog_post_metadata_comments_content-->Comments (<?php echo mysqli_num_rows($resultx) ?>)<!--/blog_post_metadata_comments_content--></span><!--/blog_post_metadata_comments--><!--blog_post_metadata_edit-->
               <span class="u-meta-edit u-meta-icon"><!--blog_post_metadata_edit_content--><!--/blog_post_metadata_edit_content--></span><!--/blog_post_metadata_edit-->
             </div><!--/blog_post_metadata--><!--blog_post_content-->
-            <div class="u-align-justify u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content--><?php echo $row["cuatro"] ?><!--/blog_post_content_content--></div><!--/blog_post_content-->
+            <div class="u-align-justify u-blog-control u-post-content u-text u-text-2"><!--blog_post_content_content--><?php echo $row["cuatro"]; if(isset($matches)){echo "<br> Nota: ". $matches;} ?><!--/blog_post_content_content--></div><!--/blog_post_content-->
           </div>
         </div><!--/blog_post--><!--/post_details-->
-        <a onclick="" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">
-          <span style="font-size: 1.53846rem;">Tarea completada</span>
-          <br>
-        </a>
+        <?php if(!isset($row9["nueve"])){ echo '
+        <button onclick="completeWork('.$_GET["id"].')" type="submit" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">Tarea completada</button>';} else{
+          echo '
+        <button class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-palette-1-base u-btn-1">TAREA ENTREGADA</button>
+';
+        }?>
       </div>
 
       <h1 class="u-text u-text-default u-text-1">Publicaciones relacionadas</h1>

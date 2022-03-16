@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 
 function login($email, $password){
   include "conexion.php";
@@ -7,21 +7,25 @@ function login($email, $password){
   $contrasena = strip_tags($password);
   $emaila = strip_tags($email);
   
-  $consulta = "SELECT  id, uno, dos, tres, siete FROM Usuarios WHERE tres='" . $mysqli->real_escape_string(base64_encode($emaila)) . "'";
+  $consulta = "SELECT id, uno, dos, tres, siete FROM Usuarios WHERE tres='" . $mysqli->real_escape_string(base64_encode($emaila)) . "'";
   $result = consulta($mysqli, $consulta);
   $row = mysqli_fetch_assoc($result);
+
+  $consulta = "SELECT ocho FROM Perfil WHERE id=" . $row["id"];
+  $result = consulta($mysqli, $consulta);
+  $row2 = mysqli_fetch_assoc($result);
 
   if ($row["siete"] == NULL && $row["id"] != NULL) {
     if (md5($contrasena) == base64_decode($row["dos"])) {
       session_start();
       $_SESSION["Login"] = $row["id"];
-      $_SESSION["Login"] = $row["id"];
-      header('Location: index.php');
+      $_SESSION["theme"] = $row2["ocho"];
+      header('Location: index');
     }else{
-      header('Location: iniciar-sesion.php?al=1');
+      header('Location: iniciar-sesion?al=1');
     }
   }else if($row["id"] == NULL || $row["siete"] != NULL){
-    header('Location: iniciar-sesion.php?al=2');
+    header('Location: iniciar-sesion?al=2');
   }
 }
 
@@ -30,7 +34,7 @@ function register($post) {
 
   $consulta = consulta($mysqli, "SELECT uno, siete  FROM Usuarios WHERE tres ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
   $row = mysqli_fetch_assoc($consulta);
-  $consulta = consulta($mysqliroot, "SELECT uno, tres FROM verification WHERE uno='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
+  $consulta = consulta($mysqli, "SELECT uno, tres FROM verification WHERE uno='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
   $row2 = mysqli_fetch_assoc($consulta);
   if (!isset($post["theme"])) {
     $post["theme"] = "white";
@@ -39,7 +43,7 @@ function register($post) {
       $consulta = consulta($mysqli, "INSERT INTO Usuarios (id, uno, dos, tres, cuatro, cinco, seis, siete, ocho) VALUES (NULL , '" .base64_encode($post["name"]). "', '" .base64_encode(md5($post["password"])). "', '".base64_encode($post["email"])."', '".base64_encode($post["curso"])."', '".$row2["cuatro"]."', '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, NULL)");
       $lol = "INSERT INTO Perfil (id, uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve) VALUES (NULL , '". $mysqli->real_escape_string(base64_encode($post["email"])) ."', '".base64_encode("images/11.svg")."', NULL, NULL, '". base64_encode(date('l jS F Y h-i-s A')) ."', NULL, '".base64_encode("0/0")."', '".$post["theme"]."', NULL)";
       $consulta = consulta($mysqli, $lol);
-      $consulta = consulta($mysqliroot, "UPDATE verification SET tres = '" . base64_encode($post["name"]). "' WHERE uno ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
+      $consulta = consulta($mysqli, "UPDATE verification SET tres = '" . base64_encode($post["name"]). "' WHERE uno ='" . $mysqli->real_escape_string(base64_encode($post["email"])) . "'");
       $consulta = consulta($mysqli, "SELECT MAX(`id`) FROM `Usuarios`");
       $rowzx = mysqli_fetch_assoc($consulta);
       session_start();

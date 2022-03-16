@@ -1,7 +1,6 @@
 <?php
-    //error_reporting(0);
-    $mysqli = new mysqli('bys90mwmlxp3h3btspjg-mysql.services.clever-cloud.com', 'u031mxblwmv6jste', 'TNxAJsElicGfsD5VPgyD', 'bys90mwmlxp3h3btspjg');
-    $mysqliroot = new mysqli('b1mipyacpgyvckhdks8r-mysql.services.clever-cloud.com', 'uxzogkwa7ux7v3zo', 'AOSkfL3LobP25pP4Ef6T', 'b1mipyacpgyvckhdks8r');
+    error_reporting(0);
+    $mysqli = new mysqli('localhost', 'mxipra_main_verification', '0SOKv0i0e+sdgq3223', 'mxipra_main_verification');
   
     if(!$mysqli){
       if (mysqli_connect_error() == "Unknown database 'jildam'") {
@@ -13,10 +12,9 @@
 
     function customSearch($keyword, $arrayToSearch){
       foreach($arrayToSearch as $key => $arrayItem){
-        $linch = explode("=", $arrayItem);
-        if ($linch[0] == $keyword) {
-          return $linch[1];
-        }
+          if( stristr( $arrayItem, $keyword ) ){
+              return $key;
+          }
       }
   }
     $mysqli->set_charset('utf8');

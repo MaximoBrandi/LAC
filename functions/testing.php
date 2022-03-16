@@ -13,6 +13,9 @@ if($pos === false) {
     echo "kya";
 }
 
+$sexo = NULL;
+echo $sexo . "uno";
+
 //UPDATE Perfil SET nueve = "<script>alertify.notify('LAC ha sido actualizada, disfruta de la nueva versión', 'success', 10, function(){ console.log('dismissed'); }).dismissOthers()</script>" WHERE id = 1
 
 ?>

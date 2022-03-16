@@ -1,6 +1,4 @@
 <?php
-       ini_set("display_errors",1);
-       error_reporting(E_ALL);
 include "../../functions/conexion.php";
 $result = consulta($mysqli, "SELECT * FROM Tareas");
 $row = mysqli_fetch_assoc($result);
@@ -31,7 +29,7 @@ $row = mysqli_fetch_assoc($result);
     <div class="kanban__title">
       <h2><i class="material-icons">report_problem</i>Tareas</h2></div>
       <?php  
-            $sql = "SELECT * FROM Tareas";
+            $sql = "SELECT * FROM Tareas WHERE nueve NOT LIKE '%<".$_SESSION["Login"].">%' OR nueve IS NULL";
             $resultx = consulta($mysqli, $sql);
             if ($resultx->num_rows > 0) {
               while($row = $resultx->fetch_assoc()) {
@@ -39,7 +37,7 @@ $row = mysqli_fetch_assoc($result);
                 <h3 class="title dd-handle" >'.$row["uno"].' Materia: '.$row["dos"].'<i class=" material-icons ">filter_none</i></h3>
                   <div class="text" contenteditable="true">'.$row["cuatro"].' <br> Fecha de entrega: '.$row["tres"].'<br>
                   </div>
-                  <a target="_blank" href=../../tarea?id="'.$row["id"].'">Link de la tarea</a>
+                  <a target="_blank" href=../../tarea?id='.$row["id"].'>Link de la tarea</a>
               </li>';
               }
             } else {
@@ -58,6 +56,22 @@ $row = mysqli_fetch_assoc($result);
   <ol class="kanban  Done">
   <div class="kanban__title">
   <h2><i class="material-icons">report_problem</i>Finalizadas</h2></div>
+  <?php  
+            $sql = "SELECT * FROM Tareas WHERE nueve LIKE '%<".$_SESSION["Login"].">%'";
+            $resultx = consulta($mysqli, $sql);
+            if ($resultx->num_rows > 0) {
+              while($row = $resultx->fetch_assoc()) {
+                echo '<li class="dd-item" data-id="1">
+                <h3 class="title dd-handle" >'.$row["uno"].' Materia: '.$row["dos"].'<i class=" material-icons ">filter_none</i></h3>
+                  <div class="text" contenteditable="true">'.$row["cuatro"].' <br> Fecha de entrega: '.$row["tres"].'<br>
+                  </div>
+                  <a target="_blank" href=../../tarea?id='.$row["id"].'>Link de la tarea</a>
+              </li>';
+              }
+            } else {
+              echo "0 results";
+            }
+      ?>
   <li class="dd-item" data-id="1">
 </li>
   </ol>

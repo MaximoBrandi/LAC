@@ -175,6 +175,24 @@ function changeUserPic(){
     })
 }
 
+function completeWork(id){
+    vex.dialog.open({
+        className: 'vex-theme-default',
+        input: [
+            `<form action="tarea?id=${id}" method="post">`,
+            '<label>Ingresa tu nota</label>',
+            '<input type="text" name="nota" placeholder="0/10" value="0/10" />',
+            '<label>Si no tienes nota, deja el recuadro vacio</label>',
+            '<input type="hidden" name="set" value="1" />',
+            '<button type="submit" class="vex-dialog-button-primary vex-dialog-button vex-first">Guardar</button>','<button type="button" onclick="vex.closeAll()" class="vex-dialog-button-secondary vex-dialog-button vex-last">Cancelar</button>',
+            '</form>'
+        ].join(''),
+        buttons: [],
+        showCloseButton: false,
+        callback: function (data) {}
+    })
+}
+
 function alertChangePassword(){
     vex.dialog.open({
         message: 'Completa los campos para cambiar la contraseña',
